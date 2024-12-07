@@ -3,6 +3,7 @@ import IntroSection from "./Components/IntroSection";
 import RecentSection from "./Components/RecentSection";
 import CustomSection1 from "./Components/CustomSection1";
 import BlogGrid from "./Components/BlogGrid";
+import CustomSection2 from "./Components/CustomSection2";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <RecentSection />
       <CustomSection1 />
       <BlogGrid />
+      <CustomSection2 />
     </Box>
   );
 }
