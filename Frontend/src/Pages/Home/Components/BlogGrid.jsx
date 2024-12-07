@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 
-export default function RecentSection() {
+export default function BlogGrid() {
   return (
     <>
       <Box
@@ -17,7 +17,7 @@ export default function RecentSection() {
             color="primary.main"
             sx={{ opacity: "50%" }}
           >
-            Recent Blogs
+            Sports Blogs
           </Typography>
         </Box>
         <Box

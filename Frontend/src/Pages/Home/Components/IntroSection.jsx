@@ -14,6 +14,7 @@ export default function IntroSection() {
           >
             <Box
               minHeight="45vh"
+              borderRadius="10px"
               sx={{
                 backgroundImage: `url('https://images.unsplash.com/photo-1733246849141-50776096f51c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzfHx8ZW58MHx8fHx8')`, // Specify image size for Unsplash
                 backgroundSize: "cover", // Ensure the image covers the box
@@ -52,6 +53,7 @@ export default function IntroSection() {
                 bgcolor="green"
                 minHeight="20vh"
                 minWidth="40%"
+                borderRadius="10px"
                 sx={{
                   backgroundImage: `url('https://images.unsplash.com/photo-1733246849141-50776096f51c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzfHx8ZW58MHx8fHx8')`, // Specify image size for Unsplash
                   backgroundSize: "cover", // Ensure the image covers the box
