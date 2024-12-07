@@ -37,6 +37,11 @@ export default function CustomSection2() {
                 bgcolor: "primary.main",
                 p: "1rem",
                 maxWidth: "20rem",
+                "&:hover": {
+                  color: "primary.main", // Change border color on hover
+                  backgroundColor: "primary.text",
+                  transition: "0.8s",
+                },
               }}
             >
               Explore

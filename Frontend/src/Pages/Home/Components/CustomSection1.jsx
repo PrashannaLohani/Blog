@@ -13,10 +13,20 @@ export default function CustomSection1() {
             maxWidth="50%"
             flexWrap="wrap"
           >
-            <Typography variant="h2" color="primary.text">
+            <Typography
+              variant="h2"
+              color="primary.text"
+              fontWeight="700"
+              fontFamily="Poppins, sans-serif"
+            >
               Top 10 Colleges in Nepal in terms of eductation.
             </Typography>
-            <Typography variant="body" color="primary.text">
+            <Typography
+              variant="body"
+              color="primary.text"
+              fontWeight="400"
+              fontFamily="Poppins, sans-serif"
+            >
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Voluptates, expedita? Quis est, voluptate reprehenderit veniam
               doloremque aut debitis reiciendis, harum mollitia maxime eaque.
@@ -29,6 +39,11 @@ export default function CustomSection1() {
                 border: "1px solid white",
                 p: "1rem",
                 maxWidth: "20rem",
+                "&:hover": {
+                  color: "primary.main", // Change border color on hover
+                  backgroundColor: "primary.text",
+                  transition: "0.8s",
+                },
               }}
             >
               Explore

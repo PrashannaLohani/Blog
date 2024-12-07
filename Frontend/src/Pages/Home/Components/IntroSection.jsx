@@ -11,6 +11,7 @@ export default function IntroSection() {
             display="flex"
             flexDirection="column"
             maxWidth="55%"
+            sx={{ cursor: "pointer" }}
           >
             <Box
               minHeight="45vh"
@@ -48,7 +49,7 @@ export default function IntroSection() {
             maxWidth="55%"
             gap="2rem"
           >
-            <Box display="flex" gap="1rem">
+            <Box display="flex" gap="1rem" sx={{ cursor: "pointer" }}>
               <Box
                 bgcolor="green"
                 minHeight="20vh"

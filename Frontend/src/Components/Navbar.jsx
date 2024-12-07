@@ -54,9 +54,9 @@ export default function Navbar() {
                   fontFamily: "Poppins, sans-serif",
                   fontWeight: 400, // Ensure this matches the weight of 'poppins-extralight'
                   textDecoration: "none",
-                  color: "primary.light",
+                  color: "primary.text",
                   "&:hover": {
-                    color: "primary.text",
+                    color: "primary.light",
                     cursor: "pointer",
                   },
                   transition: "transform 0.3s",
@@ -80,9 +80,9 @@ export default function Navbar() {
               component="a"
               href={socialItem.path}
               sx={{
-                color: "primary.light",
+                color: "primary.text",
                 "&:hover": {
-                  color: "primary.text",
+                  color: "primary.light",
                   cursor: "pointer",
                 },
               }}

@@ -13,7 +13,7 @@ export default function RecentSection() {
       >
         <Box px="3rem" mb="1rem">
           <Typography
-            variant="body1"
+            variant="body"
             color="primary.main"
             sx={{ opacity: "50%" }}
           >
@@ -47,6 +47,10 @@ export default function RecentSection() {
               borderRadius="10px"
               sx={{
                 cursor: "pointer",
+                "&:hover": {
+                  transform: "translateY(-7px)",
+                  transition: "0.3s",
+                },
               }}
             >
               <Box

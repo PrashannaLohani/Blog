@@ -3,10 +3,8 @@ import {
   Button,
   Divider,
   FormControl,
-  IconButton,
   Input,
   InputAdornment,
-  InputLabel,
   Typography,
 } from "@mui/material";
 import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
@@ -16,15 +14,14 @@ export default function Footer() {
   return (
     <>
       <Box
-        minHeight="50vh"
-        p="3rem"
+        p="2rem"
         display="flex"
+        alignItems="center"
         justifyContent="space-around"
-        mt="5rem"
-        gap="8rem"
+        gap="2rem"
         bgcolor="primary.main"
       >
-        <Box display="flex" flexDirection="column" gap="2rem">
+        <Box display="flex" flexDirection="column">
           <Box>
             <Typography
               variant="h3"
@@ -34,7 +31,7 @@ export default function Footer() {
               Let's get Connected
             </Typography>
           </Box>
-          <Box>
+          <Box mt="2rem">
             <Typography variant="h6" color="primary.text">
               Contact Information
             </Typography>
@@ -53,18 +50,13 @@ export default function Footer() {
           </Box>
         </Box>
 
-        <Box display="flex" flexDirection="column" gap="1rem" mt="5rem">
+        <Box display="flex" flexDirection="column" gap="1rem">
           <Typography variant="h6" color="primary.text" fontWeight="500">
-            Stay Connected{" "}
+            Send Feedback
           </Typography>
-          <FormControl sx={{ gap: "1rem" }}>
+          <FormControl sx={{ gap: "1rem", minWidth: "20rem" }}>
             <Input
-              startAdornment={
-                <InputAdornment position="start">
-                  <EmailIcon />
-                </InputAdornment>
-              }
-              placeholder=" Enter your email"
+              placeholder="Enter your email"
               type="email"
               disableUnderline="true"
               sx={{
@@ -91,27 +83,30 @@ export default function Footer() {
                 border: "1px solid white",
                 mt: "1rem",
                 maxWidth: "10rem",
+                "&:hover": {
+                  color: "primary.main", // Change border color on hover
+                  backgroundColor: "primary.text",
+                  transition: "0.8s",
+                },
               }}
             >
-              Subscribe
+              Send
             </Button>
           </FormControl>
         </Box>
       </Box>
       <Divider sx={{ bgcolor: "primary.main" }} />
       <Box
-        padding="2rem"
+        padding="1rem"
         display="flex"
         alignItems="center"
         justifyContent="space-around"
         gap="20rem"
         bgcolor="primary.main"
       >
-        <Box>
-          <Typography variant="caption" color="primary.text">
-            2022&#169; company.Ltd. All Right reserved
-          </Typography>
-        </Box>
+        <Typography variant="caption" color="primary.text">
+          2024&#169; company.Ltd. All Right reserved
+        </Typography>
       </Box>
     </>
   );
