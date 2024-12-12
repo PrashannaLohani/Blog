@@ -90,7 +90,7 @@ export default function BlogSimilar() {
                 "&:hover": {
                   color: "primary.main",
                   backgroundColor: "primary.text",
-                  transition: "0.8s",
+                  transition: "0.5s",
                 },
               }}
             >

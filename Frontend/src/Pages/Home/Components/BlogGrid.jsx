@@ -1,4 +1,5 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
+import EastIcon from "@mui/icons-material/East";
 
 export default function BlogGrid() {
   return (
@@ -21,64 +22,92 @@ export default function BlogGrid() {
           </Typography>
         </Box>
         <Box
-          minHeight="70vh"
-          display="grid"
+          display="flex"
+          flexDirection="column"
           gap="1rem"
           px="3rem"
           sx={{
-            gridTemplateColumns: {
-              xs: "1fr",
-              sm: "repeat(2, 1fr)",
-              md: "repeat(3, 1fr)",
-              lg: "repeat(4, 1fr)",
-            },
-            gap: "1rem",
-            px: "3rem",
+            position: "relative",
           }}
         >
-          {[...Array(4)].map((_, index) => (
-            <Box
-              key={index}
-              minHeight="50vh"
-              display="flex"
-              flexDirection="column"
-              overflow="hidden"
-              boxShadow="rgba(149, 157, 165, 0.2) 0px 8px 24px"
-              borderRadius="10px"
+          <Box
+            display="grid"
+            gap="1rem"
+            sx={{
+              gridTemplateColumns: {
+                xs: "1fr",
+                sm: "repeat(2, 1fr)",
+                md: "repeat(3, 1fr)",
+                lg: "repeat(4, 1fr)",
+              },
+              gap: "1rem",
+            }}
+          >
+            {[...Array(4)].map((_, index) => (
+              <Box
+                key={index}
+                minHeight="50vh"
+                display="flex"
+                flexDirection="column"
+                overflow="hidden"
+                boxShadow="rgba(149, 157, 165, 0.2) 0px 8px 24px"
+                borderRadius="10px"
+                sx={{
+                  cursor: "pointer",
+                  "&:hover": {
+                    border: "1px solid black",
+                    borderBottom: "5px solid black",
+                    transform: "translateY(-7px)",
+                    textDecoration: "underline",
+                    transition: "0.5s",
+                  },
+                }}
+              >
+                <Box
+                  bgcolor="red"
+                  minHeight="50vh"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  sx={{
+                    backgroundImage: `url('https://images.unsplash.com/photo-1733325155289-1d5dc3c9e4a2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyNnx8fGVufDB8fHx8fA%3D%3D')`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                  }}
+                ></Box>
+                <Box p="1rem">
+                  <Typography variant="caption" color="primary.light">
+                    Jul 17, 2024
+                  </Typography>
+                  <Typography variant="body1">
+                    Design Instagram Stories untuk iklan cuci gudang akhir tahun
+                  </Typography>
+                </Box>
+              </Box>
+            ))}
+          </Box>
+          <Box
+            display="flex"
+            justifyContent="flex-end" // Push the button to the right
+            mt="1rem"
+          >
+            <Button
+              variant="outlined"
+              endIcon={<EastIcon />}
               sx={{
-                cursor: "pointer",
+                border: "1px solid black",
+                maxWidth: "15rem",
                 "&:hover": {
-                  border: "1px solid black",
-                  borderBottom: "5px solid black",
-                  transform: "translateY(-7px)",
-                  textDecoration: "underline",
+                  color: "primary.text",
+                  backgroundColor: "primary.main",
                   transition: "0.5s",
                 },
               }}
             >
-              <Box
-                bgcolor="red"
-                minHeight="50vh"
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                sx={{
-                  backgroundImage: `url('https://images.unsplash.com/photo-1733325155289-1d5dc3c9e4a2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyNnx8fGVufDB8fHx8fA%3D%3D')`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
-                }}
-              ></Box>
-              <Box p="1rem">
-                <Typography variant="caption" color="primary.light">
-                  Jul 17, 2024
-                </Typography>
-                <Typography variant="body1">
-                  Design Instagram Stories untuk iklan cuci gudang akhir tahun
-                </Typography>
-              </Box>
-            </Box>
-          ))}
+              Explore More
+            </Button>
+          </Box>
         </Box>
       </Box>
     </>

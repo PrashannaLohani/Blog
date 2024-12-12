@@ -3,14 +3,25 @@ import {
   Button,
   Divider,
   FormControl,
+  IconButton,
   Input,
   InputAdornment,
   Typography,
 } from "@mui/material";
 import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
 import EmailIcon from "@mui/icons-material/Email";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import XIcon from "@mui/icons-material/X";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 export default function Footer() {
+  const social = [
+    { id: 1, icon: <InstagramIcon />, path: "#" },
+    { id: 2, icon: <XIcon />, path: "#" },
+    { id: 3, icon: <FacebookIcon />, path: "#" },
+    { id: 4, icon: <LinkedInIcon />, path: "#" },
+  ];
   return (
     <>
       <Box
@@ -35,12 +46,6 @@ export default function Footer() {
             <Typography variant="h6" color="primary.text">
               Contact Information
             </Typography>
-            <Box display="flex" alignItems="center" mt="0.5rem" gap="1rem">
-              <PhoneInTalkIcon sx={{ color: "primary.text", height: "20px" }} />
-              <Typography variant="body2" color="primary.text">
-                +977 9800000002
-              </Typography>
-            </Box>
             <Box display="flex" alignItems="center" mt="0.5rem" gap="1rem">
               <EmailIcon sx={{ color: "primary.text", height: "20px" }} />
               <Typography variant="body2" color="primary.text">
@@ -104,9 +109,35 @@ export default function Footer() {
         gap="20rem"
         bgcolor="primary.main"
       >
-        <Typography variant="caption" color="primary.text">
-          2024&#169; company.Ltd. All Right reserved
-        </Typography>
+        <Box
+          color="primary.light"
+          minHeight="2rem"
+          display="flex"
+          gap="3px"
+          mt="1rem"
+        >
+          {social.map((socialItem) => (
+            <IconButton
+              key={socialItem.id}
+              component="a"
+              href={socialItem.path}
+              sx={{
+                color: "primary.text",
+                "&:hover": {
+                  color: "primary.light",
+                  cursor: "pointer",
+                },
+              }}
+            >
+              {socialItem.icon}
+            </IconButton>
+          ))}
+        </Box>
+        <Box minHeight="2rem" mt="1rem" display="flex" alignItems="center">
+          <Typography variant="caption" color="primary.text">
+            2024&#169; company.Ltd. All Right reserved
+          </Typography>
+        </Box>
       </Box>
     </>
   );

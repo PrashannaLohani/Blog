@@ -1,4 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
+import EastIcon from "@mui/icons-material/East";
 
 export default function CustomSection1() {
   return (
@@ -34,6 +35,7 @@ export default function CustomSection1() {
             </Typography>
             <Button
               variant="outlined"
+              endIcon={<EastIcon />}
               sx={{
                 color: "primary.text",
                 border: "1px solid white",
@@ -46,7 +48,7 @@ export default function CustomSection1() {
                 },
               }}
             >
-              Explore
+              Learn More
             </Button>
           </Box>
           <Box
