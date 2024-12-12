@@ -7,7 +7,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 export default function Navbar() {
   const navEle = [
     { id: 1, label: "Home", path: "/" },
-    { id: 2, label: "Blogs", path: "#" },
+    { id: 2, label: "Blogs", path: "/Blogs" },
     { id: 3, label: "About", path: "#" },
     { id: 4, label: "FAQ", path: "#" },
   ];

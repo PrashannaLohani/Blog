@@ -1,11 +1,13 @@
 import { Box } from "@mui/material";
-import Sidebar from "./Component/Sidebar";
+import BlogHeading from "./Component/BlogHeading";
+import BlogMain from "./Component/BlogMain";
 
 export default function Blogs() {
   return (
     <>
       <Box minHeight="100vh">
-        <Sidebar />
+        <BlogHeading />
+        <BlogMain />
       </Box>
     </>
   );

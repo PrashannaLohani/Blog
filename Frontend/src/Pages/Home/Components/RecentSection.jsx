@@ -48,8 +48,10 @@ export default function RecentSection() {
               sx={{
                 cursor: "pointer",
                 "&:hover": {
-                  transform: "translateY(-7px)",
-                  transition: "0.3s",
+                  border: "1px solid black",
+                  borderBottom: "5px solid black",
+                  transition: "0.5s",
+                  textDecoration: "underline",
                 },
               }}
             >
@@ -60,25 +62,12 @@ export default function RecentSection() {
                 alignItems="center"
                 justifyContent="center"
                 sx={{
-                  backgroundImage: `url('https://source.unsplash.com/random/400x300?sig=${index}')`,
+                  backgroundImage: `url('https://images.unsplash.com/photo-1733860474140-1734a8361e82?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyMnx8fGVufDB8fHx8fA%3D%3D')`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
                 }}
-              >
-                {/* Optional Text Overlay */}
-                <Typography
-                  variant="h6"
-                  color="white"
-                  sx={{
-                    backgroundColor: "rgba(0,0,0,0.5)",
-                    p: "0.5rem",
-                    borderRadius: "4px",
-                  }}
-                >
-                  Blog {index + 1}
-                </Typography>
-              </Box>
+              ></Box>
               <Box p="1rem">
                 <Typography variant="caption" color="primary.light">
                   Jul 17, 2024
