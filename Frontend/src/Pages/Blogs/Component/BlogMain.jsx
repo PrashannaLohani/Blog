@@ -11,15 +11,28 @@ export default function BlogMain() {
   aliquid. Soluta animi sed sequi id. Minima qui id odit quas fugiat
   earum nobis. Rerum, quia dolor!`;
 
-  const firstLetter = text.charAt(0); // "L"
+  const firstLetter = text.charAt(0);
   const restOfText = text.slice(1);
 
   return (
     <Box bgcolor="beige" p="5rem" display="flex" justifyContent="center">
-      <Typography component="span" variant="h3" sx={{ marginRight: "0.2rem" }}>
-        {firstLetter}
-      </Typography>
-      <Typography variant="body1" component="span" maxWidth="40rem">
+      <Typography
+        variant="body1"
+        component="p"
+        maxWidth="40rem"
+        sx={{ textAlign: "justify", lineHeight: 1.4 }}
+      >
+        <Typography
+          component="span"
+          sx={{
+            float: "left",
+            fontSize: "2.5rem",
+            lineHeight: "1.12",
+            marginRight: "0.2rem",
+          }}
+        >
+          {firstLetter}
+        </Typography>
         {restOfText}
       </Typography>
     </Box>

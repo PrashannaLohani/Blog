@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import BlogHeading from "./Component/BlogHeading";
 import BlogMain from "./Component/BlogMain";
+import BlogSimilar from "./Component/BlogSimilar";
 
 export default function Blogs() {
   return (
@@ -8,6 +9,7 @@ export default function Blogs() {
       <Box minHeight="100vh">
         <BlogHeading />
         <BlogMain />
+        <BlogSimilar />
       </Box>
     </>
   );

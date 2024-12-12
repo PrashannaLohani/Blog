@@ -50,8 +50,9 @@ export default function BlogGrid2() {
                 "&:hover": {
                   border: "1px solid black",
                   borderBottom: "5px solid black",
-                  transition: "0.5s",
+                  transform: "translateY(-7px)",
                   textDecoration: "underline",
+                  transition: "0.5s",
                 },
               }}
             >
