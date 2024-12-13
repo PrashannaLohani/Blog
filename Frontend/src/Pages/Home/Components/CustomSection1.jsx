@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
-import EastIcon from "@mui/icons-material/East";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
-export default function CustomSection1() {
+export default function CustomSection1({ truncateText }) {
   return (
     <>
       <Box bgcolor="primary.main" minHeight="80vh" p="2rem">
@@ -20,7 +20,10 @@ export default function CustomSection1() {
               fontWeight="700"
               fontFamily="Poppins, sans-serif"
             >
-              Top 10 Colleges in Nepal in terms of eductation.
+              {truncateText(
+                "Top 10 Colleges in Nepal in terms of eductation.",
+                9
+              )}
             </Typography>
             <Typography
               variant="body"
@@ -28,14 +31,14 @@ export default function CustomSection1() {
               fontWeight="400"
               fontFamily="Poppins, sans-serif"
             >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Voluptates, expedita? Quis est, voluptate reprehenderit veniam
-              doloremque aut debitis reiciendis, harum mollitia maxime eaque.
-              Laudantium excepturi nihil quisquam beatae perferendis nulla!
+              {truncateText(
+                "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur voluptatibus minus neque odit tempore voluptatum nesciunt, et magnam provident eum debitis modi, atque officiis minima aliquid itaque quod. Mollitia, corporis excepturi!",
+                30
+              )}
             </Typography>
             <Button
               variant="outlined"
-              endIcon={<EastIcon />}
+              endIcon={<ArrowForwardIcon />}
               sx={{
                 color: "primary.text",
                 border: "1px solid white",

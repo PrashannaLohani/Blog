@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
-
-export default function RecentSection() {
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+export default function RecentSection({ truncateText }) {
   return (
     <>
       <Box
@@ -51,8 +51,12 @@ export default function RecentSection() {
                   border: "1px solid black",
                   borderBottom: "5px solid black",
                   transform: "translateY(-7px)",
-                  textDecoration: "underline",
                   transition: "0.5s",
+                },
+                "&:hover .hoverEffect": {
+                  transform: "translateY(-5px)",
+                  textDecoration: "Underline solid black",
+                  transition: "0.3s",
                 },
               }}
             >
@@ -72,9 +76,31 @@ export default function RecentSection() {
                 <Typography variant="caption" color="primary.light">
                   Jul 17, 2024
                 </Typography>
-                <Typography variant="body1">
-                  Design Instagram Stories untuk iklan cuci gudang akhir tahun
+                <Typography variant="h6" fontWeight="600" lineHeight="1.2">
+                  {truncateText("Design Instagram Stories untuk iklan", 4)}
                 </Typography>
+                <Box
+                  display="flex"
+                  justifyContent="flex-end" // Push the button to the right
+                  mt="1rem"
+                  className="hoverEffect"
+                >
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      color: "primary.main",
+                      display: "flex",
+                      gap: "0.3rem",
+                    }}
+                  >
+                    Read more
+                  </Typography>
+                  <ArrowForwardIcon
+                    sx={{
+                      color: "primary.main", // Default color
+                    }}
+                  />
+                </Box>
               </Box>
             </Box>
           ))}

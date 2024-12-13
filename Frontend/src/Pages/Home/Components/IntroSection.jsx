@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
-
-export default function IntroSection() {
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+export default function IntroSection({ truncateText }) {
   return (
     <>
       <Box bgcolor="primary.main" minHeight="100vh" p="2rem">
@@ -11,7 +11,15 @@ export default function IntroSection() {
             display="flex"
             flexDirection="column"
             maxWidth="55%"
-            sx={{ cursor: "pointer" }}
+            borderRadius="10px"
+            sx={{
+              cursor: "pointer",
+              "&:hover .hoverEffect": {
+                transform: "translateY(-5px)",
+                textDecoration: "Underline solid  white",
+                transition: "0.3s",
+              },
+            }}
           >
             <Box
               minHeight="45vh"
@@ -33,13 +41,38 @@ export default function IntroSection() {
               <Typography variant="caption" color="primary.light">
                 Jul 17, 2024
               </Typography>
-              <Typography variant="h5">This is the Heading</Typography>
-              <Typography variant="body1">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
-                corporis repudiandae enim eius quibusdam quisquam provident
-                illo, sed voluptates labore aut est cum quis totam. Corrupti
-                quaerat vel ad doloribus?
+              <Typography variant="h4">
+                {truncateText("This is the Heading ", 6)}
               </Typography>
+              <Typography variant="body1">
+                {truncateText(
+                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit corporis repudiandae enim eius quibusdam quisquam provident illo, sed voluptates labore aut est cum quis totam. Corrupti quaerat vel ad doloribus?",
+                  50
+                )}
+              </Typography>
+            </Box>
+
+            <Box
+              display="flex"
+              justifyContent="flex-end" // Push the button to the right
+              mt="1rem"
+              className="hoverEffect"
+            >
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "primary.text",
+                  display: "flex",
+                  gap: "0.3rem",
+                }}
+              >
+                Read more
+              </Typography>
+              <ArrowForwardIcon
+                sx={{
+                  color: "primary.text", // Default color
+                }}
+              />
             </Box>
           </Box>
           <Box
@@ -49,7 +82,18 @@ export default function IntroSection() {
             maxWidth="55%"
             gap="2rem"
           >
-            <Box display="flex" gap="1rem" sx={{ cursor: "pointer" }}>
+            <Box
+              display="flex"
+              gap="1rem"
+              sx={{
+                cursor: "pointer",
+                "&:hover .hoverEffect": {
+                  transform: "translateY(-5px)",
+                  textDecoration: "Underline solid white",
+                  transition: "0.3s",
+                },
+              }}
+            >
               <Box
                 bgcolor="green"
                 minHeight="20vh"
@@ -63,13 +107,48 @@ export default function IntroSection() {
                 }}
               ></Box>
               <Box>
-                <Typography variant="caption" color="primary.light">
-                  Jul 17, 2024
-                </Typography>
-                <Typography variant="body1" color="primary.text">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Perferendis ipsam, in praesentium
-                </Typography>
+                <Box>
+                  <Typography variant="caption" color="primary.light">
+                    Jul 17, 2024
+                  </Typography>
+                  <Typography
+                    variant="h6"
+                    color="primary.text"
+                    fontWeight="600"
+                  >
+                    {truncateText(
+                      "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+                      7
+                    )}
+                  </Typography>
+                </Box>
+                <Box
+                  display="flex"
+                  justifyContent="flex-end" // Push the content to the right
+                  alignItems="center"
+                  gap="0.5rem"
+                  mt="1rem"
+                  className="hoverEffect"
+                  sx={{
+                    cursor: "pointer", // Add pointer cursor for better UX
+                  }}
+                >
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      color: "primary.text",
+                      display: "flex",
+                      gap: "0.3rem",
+                    }}
+                  >
+                    Read more
+                  </Typography>
+                  <ArrowForwardIcon
+                    sx={{
+                      color: "primary.text", // Default color
+                    }}
+                  />
+                </Box>
               </Box>
             </Box>
           </Box>

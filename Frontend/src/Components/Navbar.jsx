@@ -1,8 +1,12 @@
-import { Avatar, Box, Divider, IconButton, Typography } from "@mui/material";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import XIcon from "@mui/icons-material/X";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import {
+  Autocomplete,
+  Avatar,
+  Box,
+  Divider,
+  IconButton,
+  TextField,
+  Typography,
+} from "@mui/material";
 
 export default function Navbar() {
   const navEle = [
@@ -11,11 +15,14 @@ export default function Navbar() {
     { id: 3, label: "About", path: "#" },
     { id: 4, label: "FAQ", path: "#" },
   ];
-  const social = [
-    { id: 1, icon: <InstagramIcon />, path: "#" },
-    { id: 2, icon: <XIcon />, path: "#" },
-    { id: 3, icon: <FacebookIcon />, path: "#" },
-    { id: 4, icon: <LinkedInIcon />, path: "#" },
+  const top100Films = [
+    { label: "The Shawshank Redemption", year: 1994 },
+    { label: "The Godfather", year: 1972 },
+    { label: "The Godfather: Part II", year: 1974 },
+    { label: "The Dark Knight", year: 2008 },
+    { label: "12 Angry Men", year: 1957 },
+    { label: "Schindler's List", year: 1993 },
+    { label: "Pulp Fiction", year: 1994 },
   ];
 
   return (
@@ -74,22 +81,13 @@ export default function Navbar() {
           display="flex"
           gap="3px"
         >
-          {social.map((socialItem) => (
-            <IconButton
-              key={socialItem.id}
-              component="a"
-              href={socialItem.path}
-              sx={{
-                color: "primary.text",
-                "&:hover": {
-                  color: "primary.light",
-                  cursor: "pointer",
-                },
-              }}
-            >
-              {socialItem.icon}
-            </IconButton>
-          ))}
+          <Autocomplete
+            disablePortal
+            options={top100Films}
+            sx={{ width: 300, bgcolor: "primary.text", color: "gray" }}
+            renderInput={(params) => <TextField {...params} label="Search" />}
+          />
+          <Avatar />
         </Box>
       </Box>
     </>

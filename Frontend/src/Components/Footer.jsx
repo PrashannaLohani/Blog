@@ -8,7 +8,6 @@ import {
   InputAdornment,
   Typography,
 } from "@mui/material";
-import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
 import EmailIcon from "@mui/icons-material/Email";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import XIcon from "@mui/icons-material/X";
