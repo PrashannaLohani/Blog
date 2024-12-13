@@ -38,7 +38,7 @@ export default function BlogShare() {
         flexDirection="column"
         gap="2rem"
       >
-        <Typography variant="h6" color="primary.text">
+        <Typography variant="h6" fontWeight="600" color="primary.text">
           Share This Article
         </Typography>
         <Box display="flex" gap="4rem">

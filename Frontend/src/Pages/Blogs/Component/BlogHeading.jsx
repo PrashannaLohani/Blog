@@ -6,37 +6,48 @@ export default function BlogHeading() {
       <Box
         minHeight="100vh"
         bgcolor="primary.main"
-        p="5rem"
         display="flex"
-        justifyContent="center"
         alignItems="center"
         flexDirection="column"
-        gap="3rem"
+        p="5rem"
       >
-        <Box
-          display="flex"
-          justifyContent="center"
-          flexDirection="column"
-          gap="1rem"
-        >
-          <Typography
-            variant="h3"
-            fontFamily="Poppins, sans-serif"
-            color="primary.text"
-            fontWeight="600"
-            maxWidth="40rem"
+        <Box display="flex" justifyContent="center" flexDirection="column">
+          <Box
+            display="flex"
+            justifyContent="center"
+            flexDirection="column"
+            gap="1rem"
+            mb="3rem"
           >
-            Top 10 Colleges in Nepal in terms of eductation
-          </Typography>
-          <Typography
-            variant="h6"
-            fontFamily="Poppins, sans-serif"
-            color="primary.text"
-            fontWeight="600"
-            maxWidth="40rem"
-          >
-            Top 10 Colleges in Nepal in terms of eductation
-          </Typography>
+            <Typography
+              variant="h3"
+              fontFamily="Poppins, sans-serif"
+              color="primary.text"
+              fontWeight="600"
+              maxWidth="40rem"
+            >
+              Top 10 Colleges in Nepal in terms of eductation
+            </Typography>
+            <Typography
+              variant="h6"
+              fontFamily="Poppins, sans-serif"
+              color="primary.text"
+              fontWeight="600"
+              maxWidth="40rem"
+            >
+              Top 10 Colleges in Nepal in terms of eductation
+            </Typography>
+          </Box>
+          <Box display="flex" justifyContent="space-between" mb="0.5rem">
+            <Typography variant="body1" color="primary.light">
+              Dec 12, 2024
+            </Typography>
+            <Box>
+              <Typography variant="body1" color="primary.light">
+                Author: Manoj Thapa
+              </Typography>
+            </Box>
+          </Box>
         </Box>
         <Box
           minHeight="50vh"
