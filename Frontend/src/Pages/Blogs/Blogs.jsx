@@ -5,13 +5,19 @@ import BlogSimilar from "./Component/BlogSimilar";
 import BlogShare from "./Component/BlogShare";
 
 export default function Blogs() {
+  const truncateText = (text, wordLimit) => {
+    const words = text.split(" ");
+    return words.length > wordLimit
+      ? words.slice(0, wordLimit).join(" ") + "..."
+      : text;
+  };
   return (
     <>
       <Box minHeight="100vh">
         <BlogHeading />
         <BlogMain />
         <BlogShare />
-        <BlogSimilar />
+        <BlogSimilar truncateText={truncateText} />
       </Box>
     </>
   );

@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
-import EastIcon from "@mui/icons-material/East";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
-export default function BlogSimilar() {
+export default function BlogSimilar({ truncateText }) {
   return (
     <>
       <Box minHeight="80vh" bgcolor="#F9C0AB" p="2rem">
@@ -46,8 +46,12 @@ export default function BlogSimilar() {
                     border: "1px solid black",
                     borderBottom: "5px solid black",
                     transform: "translateY(-7px)",
-                    textDecoration: "underline",
                     transition: "0.5s",
+                  },
+                  "&:hover .hoverEffect": {
+                    transform: "translateY(-5px)",
+                    textDecoration: "Underline solid black",
+                    transition: "0.3s",
                   },
                 }}
               >
@@ -68,9 +72,34 @@ export default function BlogSimilar() {
                   <Typography variant="caption" color="primary.light">
                     Jul 17, 2024
                   </Typography>
-                  <Typography variant="body1">
-                    Design Instagram Stories untuk iklan cuci gudang akhir tahun
+                  <Typography variant="h6" fontWeight="600" lineHeight="1.2">
+                    {truncateText(
+                      " Design Instagram Stories untuk iklan cuci gudang akhir tahun",
+                      5
+                    )}
                   </Typography>
+                  <Box
+                    display="flex"
+                    justifyContent="flex-end" // Push the button to the right
+                    mt="1rem"
+                    className="hoverEffect"
+                  >
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        color: "primary.main",
+                        display: "flex",
+                        gap: "0.3rem",
+                      }}
+                    >
+                      Read more
+                    </Typography>
+                    <ArrowForwardIcon
+                      sx={{
+                        color: "primary.main", // Default color
+                      }}
+                    />
+                  </Box>
                 </Box>
               </Box>
             ))}
@@ -83,7 +112,7 @@ export default function BlogSimilar() {
           >
             <Button
               variant="outlined"
-              endIcon={<EastIcon />}
+              endIcon={<ArrowForwardIcon />}
               sx={{
                 border: "1px solid black",
                 maxWidth: "15rem",
