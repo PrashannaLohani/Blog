@@ -1,14 +1,33 @@
+import React, { useState, useRef, useEffect } from "react";
 import {
   Autocomplete,
   Avatar,
   Box,
-  Divider,
   IconButton,
-  TextField,
+  InputBase,
   Typography,
+  Collapse,
+  keyframes,
 } from "@mui/material";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import SearchIcon from "@mui/icons-material/Search";
+
+const pulseAnimation = keyframes`
+  0% {
+    box-shadow: 0 0 0 0 rgba(245, 245, 220, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 10px 10px rgba(0, 123, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+  }
+`;
 
 export default function Navbar() {
+  const [showSearch, setShowSearch] = useState(false);
+  const searchRef = useRef(null); // Ref to track the search area
+
   const navEle = [
     { id: 1, label: "Home", path: "/" },
     { id: 2, label: "Blogs", path: "/Blogs" },
@@ -25,6 +44,20 @@ export default function Navbar() {
     { label: "Pulp Fiction", year: 1994 },
   ];
 
+  // Detect clicks outside of the search area
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setShowSearch(false); // Collapse the search bar
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <>
       <Box
@@ -34,7 +67,7 @@ export default function Navbar() {
         alignItems="center"
         justifyContent="space-between"
         sx={{
-          margin: "0 auto", // Center the divider
+          margin: "0 auto",
           borderBottom: "1px solid white",
           borderWidth: "90%",
         }}
@@ -59,7 +92,7 @@ export default function Navbar() {
                 href={navItem.path}
                 sx={{
                   fontFamily: "Poppins, sans-serif",
-                  fontWeight: 400, // Ensure this matches the weight of 'poppins-extralight'
+                  fontWeight: 400,
                   textDecoration: "none",
                   color: "primary.text",
                   "&:hover": {
@@ -79,15 +112,80 @@ export default function Navbar() {
           minHeight="2rem"
           p="1rem"
           display="flex"
-          gap="3px"
+          alignItems="center"
+          gap="1rem"
         >
-          <Autocomplete
-            disablePortal
-            options={top100Films}
-            sx={{ width: 300, bgcolor: "primary.text", color: "gray" }}
-            renderInput={(params) => <TextField {...params} label="Search" />}
-          />
-          <Avatar />
+          {/* Search Icon Button */}
+          <Box ref={searchRef} display="flex" alignItems="center" gap="0.5rem">
+            <IconButton
+              onClick={() => setShowSearch((prev) => !prev)}
+              sx={{
+                backgroundColor: showSearch ? "primary.light" : "transparent",
+                transition: "background-color 0.3s ease",
+                "&::after": {
+                  content: '""',
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  borderRadius: "50%",
+
+                  animation: `${pulseAnimation} 2s infinite`,
+                },
+              }}
+            >
+              <SearchIcon sx={{ color: "primary.text" }} />
+            </IconButton>
+
+            {/* Animated Search Input */}
+            <Collapse in={showSearch} orientation="horizontal">
+              <Autocomplete
+                disablePortal
+                options={top100Films}
+                sx={{
+                  width: 300,
+                  transition: "width 0.3s ease",
+                }}
+                renderInput={(params) => (
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                      bgcolor: "primary.text",
+                      borderRadius: "1rem",
+                      padding: "0.2rem 0.5rem",
+                    }}
+                  >
+                    <InputBase
+                      ref={params.InputProps.ref} // Forward ref for compatibility
+                      inputProps={{ ...params.inputProps }} // Pass the required input props
+                      placeholder="Search"
+                      sx={{ flex: 1, color: "gray" }}
+                    />
+                  </Box>
+                )}
+              />
+            </Collapse>
+          </Box>
+
+          {/* Other Buttons */}
+          <IconButton
+            onClick={() => setShowSearch(false)} // Collapse search when clicked
+          >
+            <NotificationsIcon
+              sx={{
+                color: "primary.text",
+              }}
+            />
+          </IconButton>
+
+          <IconButton
+            onClick={() => setShowSearch(false)} // Collapse search when clicked
+          >
+            <Avatar />
+          </IconButton>
         </Box>
       </Box>
     </>
