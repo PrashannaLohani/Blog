@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SearchIcon from "@mui/icons-material/Search";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const pulseAnimation = keyframes`
   0% {
@@ -184,7 +185,7 @@ export default function Navbar() {
           <IconButton
             onClick={() => setShowSearch(false)} // Collapse search when clicked
           >
-            <Avatar />
+            <MenuIcon sx={{ color: "primary.text" }} />
           </IconButton>
         </Box>
       </Box>
