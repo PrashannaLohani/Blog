@@ -11,7 +11,7 @@ export default function BlogReview() {
   //Dummy data...
   const review = [
     {
-      name: "Ram Bhattrai",
+      name: "Ram Bhattarai",
       date: "December 12, 2024",
       rating: 4.5,
       content:
