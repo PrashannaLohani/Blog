@@ -114,8 +114,9 @@ export default function BlogSimilar({ truncateText }) {
               variant="outlined"
               endIcon={<ArrowForwardIcon />}
               sx={{
-                border: "1px solid black",
                 maxWidth: "15rem",
+                bgcolor: "primary.main",
+                color: "primary.text",
                 "&:hover": {
                   color: "primary.main",
                   backgroundColor: "primary.text",
