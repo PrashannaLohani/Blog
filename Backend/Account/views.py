@@ -4,7 +4,7 @@ from rest_framework import status
 from .serializers import UserSignupSerializer
 
 @api_view(['POST'])
-def user_signup(request):
+def create_user(request):
     if request.method == 'POST':
         serializer = UserSignupSerializer(data=request.data)
         if serializer.is_valid():
