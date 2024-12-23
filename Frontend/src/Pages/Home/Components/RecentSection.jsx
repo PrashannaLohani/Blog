@@ -1,6 +1,33 @@
 import { Box, Typography } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-export default function RecentSection({ truncateText }) {
+import CustomCard from "../../../Components/Basic-Components/CustomCard";
+export default function RecentSection() {
+  const cards = [
+    {
+      title: "Exploring the World of 3D Design",
+      date: "Jan 10, 2025",
+      backgroundImage:
+        "https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx8fGVufDB8fHx8",
+    },
+    {
+      title: "Top 10 Trends in Digital Marketing",
+      date: "Feb 5, 2025",
+      backgroundImage:
+        "https://images.unsplash.com/photo-1730829807443-c314c7bd4495?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzfHx8ZW58MHx8fHx8",
+    },
+    {
+      title: "Sustainability in Modern Architecture",
+      date: "Feb 20, 2025",
+      backgroundImage:
+        "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx8fGVufDB8fHx8",
+    },
+    {
+      title: "Advancing AI in Healthcare",
+      date: "Mar 1, 2025",
+      backgroundImage:
+        "https://images.unsplash.com/photo-1721332153282-3be1f363074d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxMXx8fGVufDB8fHx8fA%3D%3D",
+    },
+  ];
   return (
     <>
       <Box
@@ -36,73 +63,13 @@ export default function RecentSection({ truncateText }) {
             px: "3rem",
           }}
         >
-          {[...Array(4)].map((_, index) => (
-            <Box
+          {cards.map((card, index) => (
+            <CustomCard
               key={index}
-              minHeight="50vh"
-              display="flex"
-              flexDirection="column"
-              overflow="hidden"
-              boxShadow="rgba(149, 157, 165, 0.2) 0px 8px 24px"
-              borderRadius="10px"
-              sx={{
-                cursor: "pointer",
-                "&:hover": {
-                  border: "1px solid black",
-                  borderBottom: "5px solid black",
-                  transform: "translateY(-7px)",
-                  transition: "0.5s",
-                },
-                "&:hover .hoverEffect": {
-                  transform: "translateY(-5px)",
-                  textDecoration: "Underline solid black",
-                  transition: "0.3s",
-                },
-              }}
-            >
-              <Box
-                minHeight="50vh"
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                sx={{
-                  backgroundImage: `url('https://images.unsplash.com/photo-1733860474140-1734a8361e82?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyMnx8fGVufDB8fHx8fA%3D%3D')`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
-                }}
-              ></Box>
-              <Box p="1rem">
-                <Typography variant="caption" color="primary.light">
-                  Jul 17, 2024
-                </Typography>
-                <Typography variant="h6" fontWeight="600" lineHeight="1.2">
-                  {truncateText("Design Instagram Stories untuk iklan", 4)}
-                </Typography>
-                <Box
-                  display="flex"
-                  justifyContent="flex-end" // Push the button to the right
-                  mt="1rem"
-                  className="hoverEffect"
-                >
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      color: "primary.main",
-                      display: "flex",
-                      gap: "0.3rem",
-                    }}
-                  >
-                    Read more
-                  </Typography>
-                  <ArrowForwardIcon
-                    sx={{
-                      color: "primary.main", // Default color
-                    }}
-                  />
-                </Box>
-              </Box>
-            </Box>
+              title={card.title}
+              date={card.date}
+              backgroundImage={card.backgroundImage}
+            />
           ))}
         </Box>
       </Box>

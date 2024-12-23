@@ -1,8 +1,35 @@
 import { Box, Typography } from "@mui/material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import CustomButton from "../../../Components/Basic-Components/Button";
+import CustomCard from "../../../Components/Basic-Components/CustomCard";
 
-export default function BlogGrid2({ truncateText }) {
+export default function BlogGrid2() {
+  const cards = [
+    {
+      title: "Mastering UI/UX Design Principles",
+      date: "Nov 1, 2024",
+      backgroundImage:
+        "https://images.unsplash.com/photo-1504805572947-34fad45aed93?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx8fGVufDB8fHx8",
+    },
+    {
+      title: "AI-Powered Tools for Creatives",
+      date: "Nov 15, 2024",
+      backgroundImage:
+        "https://images.unsplash.com/photo-1719937050445-098888c0625e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw0MXx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+      title: "How Blockchain is Transforming Businesses",
+      date: "Dec 3, 2024",
+      backgroundImage:
+        "https://images.unsplash.com/photo-1542744173-05336fcc7ad4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx8fGVufDB8fHx8",
+    },
+    {
+      title: "The Rise of Remote Work Opportunities",
+      date: "Dec 20, 2024",
+      backgroundImage:
+        "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx8fGVufDB8fHx8",
+    },
+  ];
+
   return (
     <>
       <Box
@@ -44,73 +71,13 @@ export default function BlogGrid2({ truncateText }) {
               gap: "1rem",
             }}
           >
-            {[...Array(4)].map((_, index) => (
-              <Box
+            {cards.map((card, index) => (
+              <CustomCard
                 key={index}
-                minHeight="50vh"
-                display="flex"
-                flexDirection="column"
-                overflow="hidden"
-                boxShadow="rgba(149, 157, 165, 0.2) 0px 8px 24px"
-                borderRadius="10px"
-                sx={{
-                  cursor: "pointer",
-                  "&:hover": {
-                    border: "1px solid black",
-                    borderBottom: "5px solid black",
-                    transform: "translateY(-7px)",
-                    transition: "0.5s",
-                  },
-                  "&:hover .hoverEffect": {
-                    transform: "translateY(-5px)",
-                    textDecoration: "Underline solid black",
-                    transition: "0.3s",
-                  },
-                }}
-              >
-                <Box
-                  minHeight="50vh"
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  sx={{
-                    backgroundImage: `url('https://images.unsplash.com/photo-1733341127451-310048ab18c4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzMHx8fGVufDB8fHx8fA%3D%3D')`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                  }}
-                ></Box>
-                <Box p="1rem">
-                  <Typography variant="caption" color="primary.light">
-                    Jul 17, 2024
-                  </Typography>
-                  <Typography variant="h6" fontWeight="600" lineHeight="1.2">
-                    {truncateText("Design Instagram Stories untuk iklan", 4)}
-                  </Typography>
-                  <Box
-                    display="flex"
-                    justifyContent="flex-end" // Push the button to the right
-                    mt="1rem"
-                    className="hoverEffect"
-                  >
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        color: "primary.main",
-                        display: "flex",
-                        gap: "0.6rem",
-                      }}
-                    >
-                      Read more
-                    </Typography>
-                    <ArrowForwardIcon
-                      sx={{
-                        color: "primary.main", // Default color
-                      }}
-                    />
-                  </Box>
-                </Box>
-              </Box>
+                title={card.title}
+                date={card.date}
+                backgroundImage={card.backgroundImage}
+              />
             ))}
           </Box>
           <Box

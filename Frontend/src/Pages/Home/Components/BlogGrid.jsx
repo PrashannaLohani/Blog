@@ -1,8 +1,34 @@
 import { Box, Typography } from "@mui/material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import CustomButton from "../../../Components/Basic-Components/Button";
+import CustomCard from "../../../Components/Basic-Components/CustomCard";
 
-export default function BlogGrid({ truncateText }) {
+export default function BlogGrid() {
+  const cards = [
+    {
+      title: "Design Instagram Stories untuk iklan",
+      date: "Jul 17, 2024",
+      backgroundImage:
+        "https://images.unsplash.com/photo-1733325155289-1d5dc3c9e4a2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyNnx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+      title: "Creative Designs for Marketing",
+      date: "Aug 12, 2024",
+      backgroundImage:
+        "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx8fGVufDB8fHx8",
+    },
+    {
+      title: "Innovative Web Development Trends",
+      date: "Sep 25, 2024",
+      backgroundImage:
+        "https://images.unsplash.com/photo-1505685296765-3a2736de412f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx8fGVufDB8fHx8",
+    },
+    {
+      title: "The Future of Mobile Applications",
+      date: "Oct 8, 2024",
+      backgroundImage:
+        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx8fGVufDB8fHx8",
+    },
+  ];
   return (
     <>
       <Box
@@ -44,74 +70,13 @@ export default function BlogGrid({ truncateText }) {
               gap: "1rem",
             }}
           >
-            {[...Array(4)].map((_, index) => (
-              <Box
+            {cards?.map((card, index) => (
+              <CustomCard
                 key={index}
-                minHeight="50vh"
-                display="flex"
-                flexDirection="column"
-                overflow="hidden"
-                boxShadow="rgba(149, 157, 165, 0.2) 0px 8px 24px"
-                borderRadius="10px"
-                sx={{
-                  cursor: "pointer",
-                  "&:hover": {
-                    border: "1px solid black",
-                    borderBottom: "5px solid black",
-                    transform: "translateY(-7px)",
-                    transition: "0.5s",
-                  },
-                  "&:hover .hoverEffect": {
-                    transform: "translateY(-5px)",
-                    textDecoration: "Underline solid black",
-                    transition: "0.3s",
-                  },
-                }}
-              >
-                <Box
-                  bgcolor="red"
-                  minHeight="50vh"
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  sx={{
-                    backgroundImage: `url('https://images.unsplash.com/photo-1733325155289-1d5dc3c9e4a2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyNnx8fGVufDB8fHx8fA%3D%3D')`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                  }}
-                ></Box>
-                <Box p="1rem">
-                  <Typography variant="caption" color="primary.light">
-                    Jul 17, 2024
-                  </Typography>
-                  <Typography variant="h6" fontWeight="600" lineHeight="1.2">
-                    {truncateText("Design Instagram Stories untuk iklan", 4)}
-                  </Typography>
-                  <Box
-                    display="flex"
-                    justifyContent="flex-end" // Push the button to the right
-                    mt="1rem"
-                    className="hoverEffect"
-                  >
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        color: "primary.main",
-                        display: "flex",
-                        gap: "0.3rem",
-                      }}
-                    >
-                      Read more
-                    </Typography>
-                    <ArrowForwardIcon
-                      sx={{
-                        color: "primary.main", // Default color
-                      }}
-                    />
-                  </Box>
-                </Box>
-              </Box>
+                title={card.title}
+                date={card.date}
+                backgroundImage={card.backgroundImage}
+              />
             ))}
           </Box>
           <Box
