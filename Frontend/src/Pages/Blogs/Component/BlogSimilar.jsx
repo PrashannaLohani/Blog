@@ -1,5 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import CustomButton from "../../../Components/Basic-Components/Button";
 
 export default function BlogSimilar({ truncateText }) {
   return (
@@ -110,22 +111,7 @@ export default function BlogSimilar({ truncateText }) {
             justifyContent="flex-end" // Push the button to the right
             mt="1rem"
           >
-            <Button
-              variant="outlined"
-              endIcon={<ArrowForwardIcon />}
-              sx={{
-                maxWidth: "15rem",
-                bgcolor: "primary.main",
-                color: "primary.text",
-                "&:hover": {
-                  color: "primary.main",
-                  backgroundColor: "primary.text",
-                  transition: "0.5s",
-                },
-              }}
-            >
-              Explore More
-            </Button>
+            <CustomButton>Explore More</CustomButton>
           </Box>
         </Box>
       </Box>

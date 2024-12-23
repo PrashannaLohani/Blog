@@ -1,5 +1,6 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import CustomButton from "../../../Components/Basic-Components/Button";
 
 export default function BlogGrid({ truncateText }) {
   return (
@@ -118,22 +119,7 @@ export default function BlogGrid({ truncateText }) {
             justifyContent="flex-end" // Push the button to the right
             mt="1rem"
           >
-            <Button
-              variant="outlined"
-              endIcon={<ArrowForwardIcon />}
-              sx={{
-                border: "1px solid black",
-                maxWidth: "15rem",
-                p: "0.6rem",
-                "&:hover": {
-                  color: "primary.text",
-                  backgroundColor: "primary.main",
-                  transition: "0.5s",
-                },
-              }}
-            >
-              Explore More
-            </Button>
+            <CustomButton>Explore more</CustomButton>
           </Box>
         </Box>
       </Box>

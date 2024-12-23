@@ -1,5 +1,5 @@
-import { Box, Button, Typography } from "@mui/material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { Box, Typography } from "@mui/material";
+import CustomButton from "../../../Components/Basic-Components/Button";
 
 export default function CustomSection1({ truncateText }) {
   return (
@@ -36,9 +36,7 @@ export default function CustomSection1({ truncateText }) {
                 30
               )}
             </Typography>
-            <Button
-              variant="outlined"
-              endIcon={<ArrowForwardIcon />}
+            <CustomButton
               sx={{
                 color: "primary.text",
                 border: "1px solid white",
@@ -52,7 +50,7 @@ export default function CustomSection1({ truncateText }) {
               }}
             >
               Learn More
-            </Button>
+            </CustomButton>
           </Box>
           <Box
             minHeight="70vh"

@@ -10,6 +10,7 @@ import {
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useState } from "react";
+import CustomButton from "../../../Components/Basic-Components/Button";
 
 export default function BlogReview() {
   // Initial review data
@@ -108,21 +109,20 @@ export default function BlogReview() {
               multiline
               minRows={3}
             />
-            <Button
-              variant="outlined"
+            <CustomButton
+              endIcon=""
               sx={{
-                maxWidth: "12rem",
                 bgcolor: "primary.main",
                 color: "primary.text",
                 "&:hover": {
                   bgcolor: "primary.text",
                   color: "primary.main",
-                  transition: "0.3s",
+                  transition: "0.5s",
                 },
               }}
             >
               Submit Review
-            </Button>
+            </CustomButton>
           </Box>
         </Box>
       </Box>
@@ -215,23 +215,13 @@ export default function BlogReview() {
         </Box>
 
         {visibleReviewsCount < review.length && (
-          <Button
-            variant="outlined"
-            sx={{
-              bgcolor: "primary.main",
-              color: "primary.text",
-              maxWidth: "15rem",
-              mt: "2rem",
-              "&:hover": {
-                bgcolor: "primary.text",
-                color: "primary.main",
-                transition: "0.3s",
-              },
-            }}
+          <CustomButton
             onClick={loadMoreReviews}
+            endIcon=""
+            sx={{ mt: "2rem", p: "0.5rem 1rem" }}
           >
-            Load more
-          </Button>
+            Load More
+          </CustomButton>
         )}
       </Box>
     </Box>
