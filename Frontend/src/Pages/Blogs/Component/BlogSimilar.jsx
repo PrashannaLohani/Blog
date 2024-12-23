@@ -1,8 +1,28 @@
-import { Box, Button, Typography } from "@mui/material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { Box, Typography } from "@mui/material";
 import CustomButton from "../../../Components/Basic-Components/Button";
+import CustomCard from "../../../Components/Basic-Components/CustomCard";
 
-export default function BlogSimilar({ truncateText }) {
+export default function BlogSimilar() {
+  const cards = [
+    {
+      title: "Breaking Barriers with Quantum Computing",
+      date: "Mar 15, 2025",
+      backgroundImage:
+        "https://images.unsplash.com/photo-1721332149112-c54e68990d99?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1MXx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+      title: "Innovative Startups to Watch in 2025",
+      date: "Apr 5, 2025",
+      backgroundImage:
+        "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx8fGVufDB8fHx8",
+    },
+    {
+      title: "Virtual Reality in Education",
+      date: "Apr 20, 2025",
+      backgroundImage:
+        "https://images.unsplash.com/photo-1721332154191-ba5f1534266e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw4MXx8fGVufDB8fHx8fA%3D%3D",
+    },
+  ];
   return (
     <>
       <Box minHeight="80vh" bgcolor="#F9C0AB" p="2rem">
@@ -32,77 +52,13 @@ export default function BlogSimilar({ truncateText }) {
               },
             }}
           >
-            {[...Array(3)].map((_, index) => (
-              <Box
+            {cards.map((card, index) => (
+              <CustomCard
                 key={index}
-                minHeight="20vh"
-                display="flex"
-                flexDirection="column"
-                bgcolor="#F4E0AF"
-                boxShadow="rgba(149, 157, 165, 0.2) 0px 8px 24px"
-                borderRadius="10px"
-                sx={{
-                  cursor: "pointer",
-                  "&:hover": {
-                    border: "1px solid black",
-                    borderBottom: "5px solid black",
-                    transform: "translateY(-7px)",
-                    transition: "0.5s",
-                  },
-                  "&:hover .hoverEffect": {
-                    transform: "translateY(-5px)",
-                    textDecoration: "Underline solid black",
-                    transition: "0.3s",
-                  },
-                }}
-              >
-                <Box
-                  minHeight="40vh"
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  borderRadius="10px"
-                  sx={{
-                    backgroundImage: `url('https://images.unsplash.com/photo-1733860474140-1734a8361e82?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyMnx8fGVufDB8fHx8fA%3D%3D')`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                  }}
-                ></Box>
-                <Box p="1rem">
-                  <Typography variant="caption" color="primary.light">
-                    Jul 17, 2024
-                  </Typography>
-                  <Typography variant="h6" fontWeight="600" lineHeight="1.2">
-                    {truncateText(
-                      " Design Instagram Stories untuk iklan cuci gudang akhir tahun",
-                      5
-                    )}
-                  </Typography>
-                  <Box
-                    display="flex"
-                    justifyContent="flex-end" // Push the button to the right
-                    mt="1rem"
-                    className="hoverEffect"
-                  >
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        color: "primary.main",
-                        display: "flex",
-                        gap: "0.3rem",
-                      }}
-                    >
-                      Read more
-                    </Typography>
-                    <ArrowForwardIcon
-                      sx={{
-                        color: "primary.main", // Default color
-                      }}
-                    />
-                  </Box>
-                </Box>
-              </Box>
+                title={card.title}
+                date={card.date}
+                backgroundImage={card.backgroundImage}
+              />
             ))}
           </Box>
 

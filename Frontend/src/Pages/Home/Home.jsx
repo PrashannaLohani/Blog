@@ -16,11 +16,11 @@ export default function Home() {
   return (
     <Box minHeight="100vh">
       <IntroSection truncateText={truncateText} />
-      <RecentSection truncateText={truncateText} />
+      <RecentSection />
       <CustomSection1 truncateText={truncateText} />
-      <BlogGrid truncateText={truncateText} />
+      <BlogGrid />
       <CustomSection2 truncateText={truncateText} />
-      <BlogGrid2 truncateText={truncateText} />
+      <BlogGrid2 />
     </Box>
   );
 }

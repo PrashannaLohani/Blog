@@ -44,17 +44,19 @@ export default function CustomCard({
           backgroundRepeat: "no-repeat",
         }}
       ></Box>
-      <Box p="1rem">
-        <Typography variant="caption" color="primary.light">
-          {date}
-        </Typography>
-        <Typography variant="h6" fontWeight="600" lineHeight="1.2">
-          {truncateText ? truncateText(title, 4) : title}
-        </Typography>
+      <Box p="1rem" display="flex" flexDirection="column" height="100%">
+        <Box>
+          <Typography variant="caption" color="primary.light">
+            {date}
+          </Typography>
+          <Typography variant="h6" fontWeight="600" lineHeight="1.2">
+            {truncateText ? truncateText(title, 4) : title}
+          </Typography>
+        </Box>
         <Box
           display="flex"
           justifyContent="flex-end"
-          mt="1rem"
+          mt="auto"
           className="hoverEffect"
         >
           <Typography
@@ -80,14 +82,12 @@ export default function CustomCard({
 CustomCard.propTypes = {
   title: PropTypes.string.isRequired, // Title of the card
   date: PropTypes.string.isRequired, // Date to display
-  description: PropTypes.string, // Description for future use (optional)
   backgroundImage: PropTypes.string.isRequired, // Background image URL
   onClick: PropTypes.func, // Callback for card click
   truncateText: PropTypes.func, // Function to truncate text
 };
 
 CustomCard.defaultProps = {
-  description: "",
   onClick: () => {},
   truncateText: (text = "", wordLimit) =>
     text.split(" ").length > wordLimit
