@@ -59,6 +59,7 @@ export default function BlogGrid2() {
           }}
         >
           <Box
+            minHeight="70vh"
             display="grid"
             gap="1rem"
             sx={{

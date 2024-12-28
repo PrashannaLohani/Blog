@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import CustomCard from "../../../Components/Basic-Components/CustomCard";
 export default function RecentSection() {
   const cards = [
@@ -63,14 +62,16 @@ export default function RecentSection() {
             px: "3rem",
           }}
         >
-          {cards.map((card, index) => (
-            <CustomCard
-              key={index}
-              title={card.title}
-              date={card.date}
-              backgroundImage={card.backgroundImage}
-            />
-          ))}
+          {cards.map((card, index) => {
+            return (
+              <CustomCard
+                key={index}
+                title={card.title}
+                date={card.date}
+                backgroundImage={card.backgroundImage}
+              />
+            );
+          })}
         </Box>
       </Box>
     </>

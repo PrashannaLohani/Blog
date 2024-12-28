@@ -41,6 +41,7 @@ export default function BlogSimilar() {
           }}
         >
           <Box
+            minHeight="70vh"
             display="grid"
             gap="1rem"
             sx={{
