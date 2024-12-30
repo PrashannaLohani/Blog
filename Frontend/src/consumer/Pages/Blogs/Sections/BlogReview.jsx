@@ -10,7 +10,7 @@ import {
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useState } from "react";
-import CustomButton from "../../../Components/Basic-Components/Button";
+import CustomButton from "../../../../Components/Basic-Components/Button";
 
 export default function BlogReview() {
   // Initial review data

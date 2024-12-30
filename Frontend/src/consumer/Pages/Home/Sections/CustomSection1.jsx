@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import CustomButton from "../../../Components/Basic-Components/Button";
+import CustomButton from "../../../../Components/Basic-Components/Button";
 
 export default function CustomSection1({ truncateText }) {
   return (

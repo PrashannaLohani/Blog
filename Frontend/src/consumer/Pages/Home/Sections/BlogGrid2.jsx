@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
-import CustomButton from "../../../Components/Basic-Components/Button";
-import CustomCard from "../../../Components/Basic-Components/CustomCard";
+import CustomButton from "../../../../Components/Basic-Components/Button";
+import CustomCard from "../../../../Components/Basic-Components/CustomCard";
 
 export default function BlogGrid2() {
   const cards = [

@@ -1,13 +1,13 @@
 import React from "react";
-import { Box, CircularProgress } from "@mui/material";
+import { Box } from "@mui/material";
 
 // Lazy load components (you can still use them if necessary)
-const IntroSection = React.lazy(() => import("./Components/IntroSection"));
-const RecentSection = React.lazy(() => import("./Components/RecentSection"));
-const CustomSection1 = React.lazy(() => import("./Components/CustomSection1"));
-const BlogGrid = React.lazy(() => import("./Components/BlogGrid"));
-const CustomSection2 = React.lazy(() => import("./Components/CustomSection2"));
-const BlogGrid2 = React.lazy(() => import("./Components/BlogGrid2"));
+const IntroSection = React.lazy(() => import("./Sections/IntroSection"));
+const RecentSection = React.lazy(() => import("./Sections/RecentSection"));
+const CustomSection1 = React.lazy(() => import("./Sections/CustomSection1"));
+const BlogGrid = React.lazy(() => import("./Sections/BlogGrid"));
+const CustomSection2 = React.lazy(() => import("./Sections/CustomSection2"));
+const BlogGrid2 = React.lazy(() => import("./Sections/BlogGrid2"));
 
 export default function Home() {
   const truncateText = (text, wordLimit) => {

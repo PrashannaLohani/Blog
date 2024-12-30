@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import CustomCard from "../../../Components/Basic-Components/CustomCard";
+import CustomCard from "../../../../Components/Basic-Components/CustomCard";
 export default function RecentSection() {
   const cards = [
     {
