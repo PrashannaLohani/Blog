@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+import { StrictMode, Suspense } from "react";
 
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
@@ -19,8 +19,10 @@ const theme = createTheme({
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <Suspense>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </Suspense>
   </StrictMode>
 );
