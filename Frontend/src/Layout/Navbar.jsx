@@ -31,7 +31,7 @@ export default function Navbar() {
   const navEle = [
     { id: 1, label: "Home", path: "/" },
     { id: 2, label: "Blogs", path: "/Blogs" },
-    { id: 3, label: "About", path: "#" },
+    { id: 3, label: "About", path: "/Explore" },
     { id: 4, label: "FAQ", path: "#" },
   ];
   const top100Films = [
