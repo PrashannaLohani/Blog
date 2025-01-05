@@ -8,8 +8,17 @@ from rest_framework.response import Response
 @api_view(["POST"])
 def create_category(request):
     if request.method == "POST":
-        serializer = CategorySeriallizer(data=request.data)
+        serializer = CategorySerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({"message": "Category Created successfully!!!"}, status=status.HTTP_201_CREATED[[]])
+            return Response({"message": "Category Created successfully!!!"}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(["POST"])
+def create_tag(request):
+    if request.method == "POST":
+        serializer = TagSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"message": "Tag Created Successfully!!!"}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
