@@ -11,5 +11,5 @@ def create_category(request):
         serializer = CategorySeriallizer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({"message": "Category Created successfully!!!"}, status=status.HTTP_201_CREATED)
+            return Response({"message": "Category Created successfully!!!"}, status=status.HTTP_201_CREATED[[]])
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
