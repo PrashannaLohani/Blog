@@ -20,7 +20,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class TagSerializer(serializers.ModelSerializer):
     name = serializers.CharField(max_length=50)
-    slug = serializers.CharField(max_length=50)
+    slug = serializers.SlugField(max_length=50)
 
     class Meta():
         model = Tag
