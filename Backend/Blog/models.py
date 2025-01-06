@@ -3,6 +3,8 @@ from django.db import models
 # Create your models here.
 from django.db import models
 from Account.models import User
+from django.utils.text import slugify
+from django.utils.timezone import now
 
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -41,3 +43,8 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-published_date']
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)

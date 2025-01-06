@@ -22,3 +22,27 @@ def create_tag(request):
             serializer.save()
             return Response({"message": "Tag Created Successfully!!!"}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(["POST"])
+def create_post(request):
+    """
+    Create a new post
+    """
+    if request.method == "POST":
+        serializer = PostSerializer(data=request.data)
+        if serializer.is_valid():
+            post = serializer.save(author=request.user)
+            return Response(
+                {
+                    "message": "Post created successfully!!!",
+                    # "data": PostSerializer(post).data
+                },
+                status=status.HTTP_201_CREATED
+            )
+        return Response(
+            {
+                "message": "Failed to create post.",
+                "errors": serializer.errors  # Return detailed validation errors
+            },
+            status=status.HTTP_400_BAD_REQUEST
+        )
