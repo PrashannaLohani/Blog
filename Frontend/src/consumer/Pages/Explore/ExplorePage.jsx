@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import CustomCard from "../../../Components/Basic-Components/CustomCard";
+import Select from "../../../Components/Inputs/Select";
 
 export default function ExplorePage() {
   const card = [
@@ -55,11 +56,18 @@ export default function ExplorePage() {
   return (
     <>
       <Box minHeight="100vh" bgcolor="beige">
-        <Box p="1rem" display="flex" justifyContent="center">
+        <Box
+          p="1rem"
+          display="flex"
+          justifyContent="center"
+          flexDirection="column"
+          alignItems="center"
+          gap="1rem"
+        >
           <Typography variant="h3" fontWeight="600">
             Explore Blogs
           </Typography>
-          {/* Here will be searchable */}
+          <Select />
         </Box>
         <Box
           minHeight="90vh"
