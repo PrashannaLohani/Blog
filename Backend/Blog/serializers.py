@@ -69,3 +69,9 @@ class PostSerializer(serializers.ModelSerializer):
         post.categories.set(categories)
         post.tags.set(tags)
         return post
+
+    def get_content_preview(self, obj):
+        """
+        Generate a short preview of the content.
+        """
+        return obj.content[:100] + '...' if len(obj.content) > 100 else obj.content

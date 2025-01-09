@@ -46,3 +46,30 @@ def create_post(request):
             },
             status=status.HTTP_400_BAD_REQUEST
         )
+
+@api_view(["GET"])
+def get_post(request):
+    """
+    Returns all post on param ?get_all=true
+    or returns specific post on param ?post_id=<int>
+    """
+    get_all = request.query_params.get("get_all","").lower() == "true"
+    post_id = request.query_params.get("post_id")
+
+    if get_all:
+        posts = Post.objects.all()
+        serializer = PostSerializer(posts, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    if post_id:
+        try:
+            post = Post.objects.get(id=post_id)
+            serializer = PostSerializer(post)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Post.DoesNotExixt:
+            return Response({"message": "Post not found."}, status=status.HTTP_404_NOT_FOUND)
+
+    return Response(
+        {"message": "Invalid request. Please provide either `get_all=true` or `post_id`."},
+        status=status.HTTP_400_BAD_REQUEST
+    )
