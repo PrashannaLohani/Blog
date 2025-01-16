@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 
 export default function BlogMain() {
   const text = `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet, veniam
-  reprehenderit minima ducimus quibusdam quam ab adipisci nam expedita
+  reprehenderit minima ducimus quibusdam quam ab adipisci nam expedita quos
   soluta repudiandae quas sit animi ea, voluptatibus fuga sint
   perspiciatis dolores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo optio
   consectetur molestiae officiis, error expedita nostrum quaerat

@@ -1,34 +1,22 @@
-import { Box, Button, Typography } from "@mui/material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { Box, Typography } from "@mui/material";
+import CustomButton from "../../../../Components/Basic-Components/Button";
 
-export default function CustomSection2({ truncateText }) {
+export default function CustomSection1({ truncateText }) {
   return (
     <>
-      <Box bgcolor="#FFD335" minHeight="60vh" p="2rem">
+      <Box bgcolor="primary.main" minHeight="80vh" p="2rem">
         <Box display="flex" flexWrap="wrap" p="2rem">
-          <Box
-            minHeight="50vh"
-            display="flex"
-            bgcolor="red"
-            flexGrow="1"
-            borderRadius="10px"
-            sx={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1721332155433-3a4b5446bcd9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxfHx8ZW58MHx8fHx8')`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-            }}
-          ></Box>
           <Box
             display="flex"
             flexDirection="column"
-            gap="1rem"
+            gap="2rem"
             p="2rem"
             maxWidth="50%"
             flexWrap="wrap"
           >
             <Typography
               variant="h2"
+              color="primary.text"
               fontWeight="700"
               fontFamily="Poppins, sans-serif"
             >
@@ -39,6 +27,7 @@ export default function CustomSection2({ truncateText }) {
             </Typography>
             <Typography
               variant="body"
+              color="primary.text"
               fontWeight="400"
               fontFamily="Poppins, sans-serif"
             >
@@ -47,12 +36,10 @@ export default function CustomSection2({ truncateText }) {
                 30
               )}
             </Typography>
-            <Button
-              variant="outlined"
-              endIcon={<ArrowForwardIcon />}
+            <CustomButton
               sx={{
                 color: "primary.text",
-                bgcolor: "primary.main",
+                border: "1px solid white",
                 p: "1rem",
                 maxWidth: "20rem",
                 "&:hover": {
@@ -63,8 +50,21 @@ export default function CustomSection2({ truncateText }) {
               }}
             >
               Learn More
-            </Button>
+            </CustomButton>
           </Box>
+          <Box
+            minHeight="70vh"
+            display="flex"
+            bgcolor="red"
+            flexGrow="1"
+            borderRadius="10px"
+            sx={{
+              backgroundImage: `url('https://images.unsplash.com/photo-1733393735327-eb1a9d357af4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1fHx8ZW58MHx8fHx8')`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          ></Box>
         </Box>
       </Box>
     </>

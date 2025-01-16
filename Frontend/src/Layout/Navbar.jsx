@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import {
   Autocomplete,
-  Avatar,
   Box,
   IconButton,
   InputBase,
@@ -73,17 +72,15 @@ export default function Navbar() {
           borderWidth: "90%",
         }}
       >
-        <Box p="1rem" display="flex" alignItems="center" gap="3rem">
-          <Box>
-            <Avatar
-              sx={{
-                background:
-                  "linear-gradient(217deg, rgba(230,63,75,1) 57%, rgba(255,255,255,1) 100%)",
-              }}
-            >
-              M
-            </Avatar>
-          </Box>
+        <Box p="1rem" display="flex" alignItems="center" gap="1rem">
+          <img
+            src=" \Logo-blackBG.svg"
+            alt="logo"
+            style={{
+              width: "50px",
+              height: "50px",
+            }}
+          />
           <Box display="flex" gap="2rem">
             {navEle.map((navItem) => (
               <Typography

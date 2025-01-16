@@ -1,9 +1,9 @@
 import { Box } from "@mui/material";
-import BlogHeading from "./Component/BlogHeading";
-import BlogMain from "./Component/BlogMain";
-import BlogSimilar from "./Component/BlogSimilar";
-import BlogShare from "./Component/BlogShare";
-import BlogReview from "./Component/BlogReview";
+import BlogHeading from "./Sections/BlogHeading";
+import BlogMain from "./Sections/BlogMain";
+import BlogShare from "./Sections/BlogShare";
+import BlogSimilar from "./Sections/BlogSimilar";
+import BlogReview from "./Sections/BlogReview";
 
 export default function Blogs() {
   const truncateText = (text, wordLimit) => {

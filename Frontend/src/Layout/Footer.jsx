@@ -5,7 +5,6 @@ import {
   FormControl,
   IconButton,
   Input,
-  InputAdornment,
   Typography,
 } from "@mui/material";
 import EmailIcon from "@mui/icons-material/Email";
