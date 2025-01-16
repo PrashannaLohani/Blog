@@ -73,3 +73,32 @@ def get_post(request):
         {"message": "Invalid request. Please provide either `get_all=true` or `post_id`."},
         status=status.HTTP_400_BAD_REQUEST
     )
+
+@api_view(["DELETE"])
+def archive_post(request):
+    """
+    Archives or unarchives a post based on the query parameter.
+    URL: /Blog/Archive_post/?post_id=<int>&archive=true
+    """
+    post_id = request.query_params.get('post_id')
+    archive = request.query_params.get('archive').lower() == 'true'
+
+    try:
+        post = Post.objects.get(id=post_id)
+    
+        if archive:
+            post.archive()
+            return Response(
+                {"message": "Post archived successfully."},
+                status=status.HTTP_200_OK
+            )
+        else:
+            return Response(
+                {"message": "Invalid request. Provide both parameters 'post_id=<int>` and `archive=true`"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+    except Post.DoesNotExist:
+        return Response(
+            {"message": "Post not found."},
+            status=status.HTTP_404_NOT_FOUND
+        )

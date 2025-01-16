@@ -21,6 +21,10 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+class PostManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_archived=False)
+
 class Post(models.Model):
     STATUS_CHOICES = [
         ('draft', 'Draft'),
@@ -37,6 +41,12 @@ class Post(models.Model):
     published_date = models.DateTimeField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    is_archived = models.BooleanField(default=False)
+    archived_at = models.DateTimeField(null=True, blank=True)
+
+    # custom manager to exclude archived posts
+    objects = PostManager()
+    all_objects = models.Manager()
 
     def __str__(self):
         return self.title
@@ -48,3 +58,8 @@ class Post(models.Model):
         if not self.slug:
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
+
+    def archive(self):
+        self.is_archived = True
+        self.archived_at = now()
+        self.save()
