@@ -11,6 +11,7 @@ import {
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
+import Select from "../Components/Inputs/Select";
 
 const pulseAnimation = keyframes`
   0% {
@@ -31,17 +32,8 @@ export default function Navbar() {
   const navEle = [
     { id: 1, label: "Home", path: "/" },
     { id: 2, label: "Blogs", path: "/Blogs" },
-    { id: 3, label: "About", path: "#" },
+    { id: 3, label: "About", path: "/Explore" },
     { id: 4, label: "FAQ", path: "#" },
-  ];
-  const top100Films = [
-    { label: "The Shawshank Redemption", year: 1994 },
-    { label: "The Godfather", year: 1972 },
-    { label: "The Godfather: Part II", year: 1974 },
-    { label: "The Dark Knight", year: 2008 },
-    { label: "12 Angry Men", year: 1957 },
-    { label: "Schindler's List", year: 1993 },
-    { label: "Pulp Fiction", year: 1994 },
   ];
 
   // Detect clicks outside of the search area
@@ -138,33 +130,9 @@ export default function Navbar() {
 
             {/* Animated Search Input */}
             <Collapse in={showSearch} orientation="horizontal">
-              <Autocomplete
-                disablePortal
-                options={top100Films}
-                sx={{
-                  width: 300,
-                  transition: "width 0.3s ease",
-                }}
-                renderInput={(params) => (
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                      bgcolor: "primary.text",
-                      borderRadius: "1rem",
-                      padding: "0.2rem 0.5rem",
-                    }}
-                  >
-                    <InputBase
-                      ref={params.InputProps.ref} // Forward ref for compatibility
-                      inputProps={{ ...params.inputProps }} // Pass the required input props
-                      placeholder="Search"
-                      sx={{ flex: 1, color: "gray" }}
-                    />
-                  </Box>
-                )}
-              />
+              <Box>
+                <Select />
+              </Box>
             </Collapse>
           </Box>
 
