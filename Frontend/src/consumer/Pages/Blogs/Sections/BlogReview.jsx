@@ -90,10 +90,9 @@ export default function BlogReview() {
       bgcolor="beige"
       display="flex"
       justifyContent="center"
-      flexDirection="column"
       p="5rem"
     >
-      <Box minHeight="40vh" flexGrow="1" p="1rem">
+      <Box minHeight="40vh" p="1rem">
         <Typography variant="h4" fontWeight={600}>
           Submit Your Review
         </Typography>
