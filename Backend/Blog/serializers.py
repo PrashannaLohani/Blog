@@ -75,3 +75,27 @@ class PostSerializer(serializers.ModelSerializer):
         Generate a short preview of the content.
         """
         return obj.content[:100] + '...' if len(obj.content) > 100 else obj.content
+
+class CommentSerializer(serializers.ModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), write_only=True)
+    post = serializers.PrimaryKeyRelatedField(queryset=Post.objects.all(), write_only=True)
+
+    class Meta:
+        model = Comment
+        fields = [
+            'comment_id',  
+            'post', 
+            'user', 
+            'comment',  
+            'comment_like', 
+            'rating', 
+            'created_at'
+        ]
+        read_only_fields = ['comment_id', 'created_at']  # 'comment_id' is read-only
+
+    def create(self, validated_data):
+        """
+        Create and return a new `Comment` instance, given the validated data.
+        """
+        comment = Comment.objects.create(**validated_data)
+        return comment

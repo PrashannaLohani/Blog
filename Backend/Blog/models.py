@@ -36,6 +36,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
     description = models.TextField(blank=True, null=True)
     content = models.TextField()
+    display_image = models.ImageField(upload_to='post_images/', blank=True, null=True)
     categories = models.ManyToManyField(Category, related_name='posts')
     tags = models.ManyToManyField(Tag, related_name='posts')
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
