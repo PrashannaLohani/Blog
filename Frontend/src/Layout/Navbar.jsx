@@ -1,9 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import {
-  Autocomplete,
   Box,
   IconButton,
-  InputBase,
   Typography,
   Collapse,
   keyframes,
@@ -64,7 +62,7 @@ export default function Navbar() {
           borderWidth: "90%",
         }}
       >
-        <Box p="1rem" display="flex" alignItems="center" gap="1rem">
+        <Box px="1rem" display="flex" alignItems="center" gap="1rem">
           <img
             src=" \Logo-blackBG.svg"
             alt="logo"
@@ -100,7 +98,7 @@ export default function Navbar() {
         <Box
           color="primary.light"
           minHeight="2rem"
-          p="1rem"
+          px="1rem"
           display="flex"
           alignItems="center"
           gap="1rem"
@@ -137,7 +135,7 @@ export default function Navbar() {
           </Box>
 
           {/* Other Buttons */}
-          <IconButton
+          {/* <IconButton
             onClick={() => setShowSearch(false)} // Collapse search when clicked
           >
             <NotificationsIcon
@@ -151,7 +149,7 @@ export default function Navbar() {
             onClick={() => setShowSearch(false)} // Collapse search when clicked
           >
             <MenuIcon sx={{ color: "primary.text" }} />
-          </IconButton>
+          </IconButton> */}
         </Box>
       </Box>
     </>

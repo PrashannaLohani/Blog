@@ -13,7 +13,7 @@ import XIcon from "@mui/icons-material/X";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
-export default function Footer() {
+export default function CustomFooter() {
   const social = [
     { id: 1, icon: <InstagramIcon />, path: "#" },
     { id: 2, icon: <XIcon />, path: "#" },
