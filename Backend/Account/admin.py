@@ -10,6 +10,12 @@ class UserAdmin (admin.ModelAdmin):
     search_fields = ('username', 'email')
     ordering = ['username']
 
+@admin.register(Login)
+class UserLogin (admin.ModelAdmin):
+    list_display = ('id','email', 'password')
+    search_fields = ('id', 'email')
+    ordering = ['id']
+
 @admin.register(Social)
 class UserSocial (admin.ModelAdmin):
     list_display = ('user', 'instagram', 'facebook', 'twitter', 'linkedin')

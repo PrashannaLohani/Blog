@@ -18,26 +18,20 @@ class UserSignupSerializer(serializers.ModelSerializer):
         )
 
         return user
+
+class UserLoginSerializer(serializers.Serializer):
+    email = serializers.EmailField(required=True)
+    password = serializers.CharField(required=True)
+    
     
 class UserSocialSerializer(serializers.ModelSerializer):
-    instagram = serializers.CharField(max_length=100, required=False)
-    facebook = serializers.CharField(max_length=100, required=False)
-    twitter = serializers.CharField(max_length=100, required=False)
-    linkedin = serializers.CharField(max_length=100, required=False)
-
     class Meta:
-        model = User
+        model = Social
         fields = ['instagram', 'facebook', 'twitter', 'linkedin']
 
     def create(self, validated_data):
-        user = User.objects.create(
-            instagram=validated_data['instagram'],
-            facebook=validated_data['facebook'],
-            twitter=validated_data['twitter'],
-            linkedin=validated_data['linkedin']
-        )
-
-        return user
+        user = self.context['user']  # Pass user context
+        return Social.objects.create(user=user, **validated_data)
     
 class FeedbackSerializer(serializers.Serializer):
     email = serializers.EmailField()
