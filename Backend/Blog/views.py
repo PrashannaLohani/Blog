@@ -2,6 +2,7 @@ from .serializers import *
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.utils import timezone
 
 
 # Create your views here.
@@ -46,7 +47,38 @@ def create_post(request):
             },
             status=status.HTTP_400_BAD_REQUEST
         )
+        
+@api_view(["POST"])
+def create_comments( request):
+        # Get the post_id from query parameters
+        post_id = request.query_params.get('post_id')
+        if not post_id:
+            return Response(
+                {"error": "post_id is required in query parameters."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
+        # Check if the post exists
+        try:
+            post = Post.objects.get(id=post_id)
+        except Post.DoesNotExist:
+            return Response(
+                {"error": "Post not found."},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        # Add the post_id and current timestamp to the request data
+        data = request.data.copy()
+        data['post'] = post.id
+        data['created_at'] = timezone.now()
+
+        # Validate and save the comment
+        serializer = CommentSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
 @api_view(["GET"])
 def get_post(request):
     """

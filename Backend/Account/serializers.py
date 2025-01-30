@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User
+from .models import *
 
 class UserSignupSerializer(serializers.ModelSerializer):
     username = serializers.CharField(max_length=150, required=True)
@@ -18,3 +18,21 @@ class UserSignupSerializer(serializers.ModelSerializer):
         )
 
         return user
+
+class UserLoginSerializer(serializers.Serializer):
+    email = serializers.EmailField(required=True)
+    password = serializers.CharField(required=True)
+    
+    
+class UserSocialSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Social
+        fields = ['instagram', 'facebook', 'twitter', 'linkedin']
+
+    def create(self, validated_data):
+        user = self.context['user']  # Pass user context
+        return Social.objects.create(user=user, **validated_data)
+    
+class FeedbackSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    feedback = serializers.CharField()

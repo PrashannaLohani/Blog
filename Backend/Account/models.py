@@ -9,6 +9,31 @@ class User(AbstractUser):
         default=uuid.uuid4,
         editable=False
     )
-
+    numberofblogs = models.IntegerField(default=0)
+    
     def __str__(self):
         return self.username
+    
+class Login(models.Model):
+    email = models.EmailField()
+    password = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.user.username
+    
+class Social(models.Model):
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    instagram = models.CharField(max_length=100, blank=True, null=True)
+    facebook = models.CharField(max_length=100, blank=True, null=True)
+    twitter = models.CharField(max_length=100, blank=True, null=True)
+    linkedin = models.CharField(max_length=100, blank=True, null=True)
+
+
+    def __str__(self):
+        return self.user.username
+    
