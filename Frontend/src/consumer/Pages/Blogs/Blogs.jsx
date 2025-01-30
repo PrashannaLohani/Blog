@@ -18,7 +18,7 @@ export default function Blogs() {
         <BlogHeading />
         <BlogMain />
         <BlogShare />
-        <BlogSimilar truncateText={truncateText} />
+        {/* <BlogSimilar truncateText={truncateText} /> */}
         <BlogReview />
       </Box>
     </>

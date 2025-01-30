@@ -10,6 +10,9 @@ media
 *.py[cod]
 *$py.class
 
+# Docker
+dockerScript.txt
+
 # C extensions
 *.so
 

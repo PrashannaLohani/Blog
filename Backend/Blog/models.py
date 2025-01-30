@@ -5,6 +5,7 @@ from django.db import models
 from Account.models import User
 from django.utils.text import slugify
 from django.utils.timezone import now
+import uuid
 
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -30,11 +31,12 @@ class Post(models.Model):
         ('draft', 'Draft'),
         ('published', 'Published'),
     ]
-    
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
+    description = models.TextField(blank=True, null=True)
     content = models.TextField()
+    display_image = models.ImageField(upload_to='post_images/', blank=True, null=True)
     categories = models.ManyToManyField(Category, related_name='posts')
     tags = models.ManyToManyField(Tag, related_name='posts')
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
@@ -63,3 +65,19 @@ class Post(models.Model):
         self.is_archived = True
         self.archived_at = now()
         self.save()
+        
+
+class Comment(models.Model):
+    comment_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    comment = models.TextField(max_length=500)
+    comment_like = models.IntegerField(default=0)
+    rating = models.IntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.comment
+
+    class Meta:
+        ordering = ['created_at']
