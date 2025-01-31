@@ -6,9 +6,9 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import ArchiveIcon from "@mui/icons-material/Archive";
 import Sidebar from "./Sidebar/sidebar";
-import { useEffect, useState } from "react";
+import { Children, useEffect, useState } from "react";
 
-export default function AdminLayout() {
+export default function AdminLayout({ children }) {
   const [activeId, setActiveId] = useState(() => {
     return localStorage.getItem("activeMenu") || "1"; // Default active menu
   });
@@ -91,7 +91,7 @@ export default function AdminLayout() {
 
       {/* Main Content */}
       <Box gridArea="cnt" bgcolor="white" p="2rem">
-        Content Area
+        {children}
       </Box>
     </Box>
   );
