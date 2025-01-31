@@ -2,8 +2,10 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
+from django.views.decorators.csrf import csrf_exempt
 from .serializers import *
 from .models import *
+
 
 @api_view(['POST'])
 def create_user(request):
@@ -25,6 +27,7 @@ def create_user(request):
         return Response({'message': 'Please check credentials and try again.'}, status=status.HTTP_400_BAD_REQUEST)
 
     return Response({'error': 'Invalid request'}, status=status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(['POST'])
 def login_user(request):
