@@ -9,7 +9,7 @@ import {
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
-import Select from "../Components/Inputs/Select";
+import Select from "../../Components/Inputs/Select";
 
 const pulseAnimation = keyframes`
   0% {
