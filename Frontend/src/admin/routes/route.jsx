@@ -5,6 +5,7 @@ import AdminLayout from "../Layout/AdminLayout";
 
 const Login = lazy(() => import("../pages/Auth/Login"));
 const EmailVerify = lazy(() => import("../pages/Auth/EmailVerification"));
+const ResetPassword = lazy(() => import("../pages/Auth/ResetPassword"));
 const Profile = lazy(() => import("../pages/Profile"));
 const Dashboard = lazy(() => import("../pages/Dashboard"));
 const MyPost = lazy(() => import("../pages/MyPost"));
@@ -41,6 +42,11 @@ export default function AdminRoute() {
       path: "/email-verification",
       index: true,
       element: <EmailVerify />,
+    },
+    {
+      path: "/reset-password",
+      index: true,
+      element: <ResetPassword />,
     },
     {
       path: "*",

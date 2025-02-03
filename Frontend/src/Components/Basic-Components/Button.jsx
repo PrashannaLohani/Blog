@@ -18,7 +18,7 @@ export default function CustomButton({
       onClick={onClick}
       sx={{
         border: "1px solid black",
-        width: { width },
+        maxWidth: { width },
         p: "0.6rem",
         "&:hover": {
           color: "primary.text",

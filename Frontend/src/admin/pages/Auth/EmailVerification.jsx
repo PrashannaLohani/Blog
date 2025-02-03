@@ -1,8 +1,17 @@
 import { Box, Typography } from "@mui/material";
 import Input from "../../../Components/Inputs/input";
 import CustomButton from "../../../Components/Basic-Components/Button";
+import { useState } from "react";
 
 export default function EmailVerify() {
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setEmail("");
+    console.log(email);
+  };
   return (
     <>
       <Box
@@ -23,14 +32,20 @@ export default function EmailVerify() {
           gap="1rem"
         >
           <Typography variant="h4">Email Verification</Typography>
-          <Typography variant="body" width="25rem">
+          <Typography variant="body" maxWidth="25rem">
             Please enter your email for verification. A password reset link will
             be sent to your email address.
           </Typography>
-          <form>
+          <form onSubmit={handleSubmit}>
             <Box display="flex" flexDirection="column" gap="1rem">
-              <Input name="email" label="Email" width="25rem" />
-              <CustomButton variant="contained" endIcon="">
+              <Input
+                name="email"
+                label="Email"
+                width="25rem"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <CustomButton variant="contained" endIcon="" type="submit">
                 Send
               </CustomButton>
             </Box>
