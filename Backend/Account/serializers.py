@@ -38,4 +38,7 @@ class FeedbackSerializer(serializers.Serializer):
     feedback = serializers.CharField()
 
 class EmailVerificationSerializer(serializers.Serializer):
-    email= serializers.EmailField()
+    email = serializers.EmailField()
+
+class PasswordResetSerializer(serializers.Serializer):
+    new_password = serializers.CharField(min_length=8)  # Ensure a minimum password length

@@ -6,6 +6,8 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.utils.timezone import now
 from .serializers import *
 from .models import *
+from django.utils import timezone
+from django.contrib.auth.hashers import make_password
 
 
 @api_view(['POST'])
@@ -81,3 +83,28 @@ class AuthView(APIView):
             return Response({"message": "Invalid token or already logged out."}, status=status.HTTP_400_BAD_REQUEST)
         
 
+class PasswordReset(APIView):
+    def post(self, request, reset_token):
+        # Check if the reset token exists in the database
+        try:
+            user = User.objects.get(id=reset_token)
+        except User.DoesNotExist:
+            return Response({"message": "Invalid or expired reset token."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Check if the token has expired
+        if user.password_reset_token_expiry < timezone.now():
+            return Response({"message": "This reset link has expired."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Validate the new password
+        serializer = PasswordResetSerializer(data=request.data)
+        if serializer.is_valid():
+            new_password = serializer.validated_data['new_password']
+            
+            # Update the user's password
+            user.password = make_password(new_password)
+            user.password_reset_token_expiry = None  # Clear the expiry time after password reset
+            user.save()
+
+            return Response({"message": "Password successfully updated."}, status=status.HTTP_200_OK)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

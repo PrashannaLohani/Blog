@@ -1,14 +1,14 @@
 from django.core.mail import send_mail
-from django.core.mail import EmailMultiAlternatives
-from django.template.loader import render_to_string
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import *
 from decouple import config
 from .models import User
+from django.utils import timezone
+from datetime import timedelta
 from django.conf import settings
-import random
+
 
 class FeedbackView(APIView):
     def post(self, request):
@@ -36,24 +36,30 @@ class EmailVerification(APIView):
             email = serializer.validated_data['email']
 
             # Check if email exists in the User model
-            if not User.objects.filter(email=email).exists():
+            user = User.objects.filter(email=email).first()
+            if not user:
                 return Response({"message": "Email not registered."}, status=status.HTTP_400_BAD_REQUEST)
 
-            # Generate OTP
-            otp = random.randint(100000, 999999)  
+          
+            reset_token = user.id 
+            reset_token_expiry = timezone.now() + timedelta(seconds=30)  # Set expiration time to 30 seconds
 
-            # Store OTP in session or cache (you can use Redis or database)
-            request.session['otp'] = otp
-            request.session['email'] = email
-            # Send OTP email
+            # Save the expiration time to the user model (without needing a separate method in the model)
+            user.password_reset_token_expiry = reset_token_expiry
+            user.save()
+
+            # Create password reset link
+            reset_link = f"test/reset-password/{reset_token}/"
+
+            # Send the password reset link via email
             send_mail(
-                subject="Your OTP for Email Verification",
-                message=f"Your OTP for verification is {otp}. Please enter this to verify your email.",
+                subject="Password Reset Link",
+                message=f"Click the following link to reset your password: {reset_link}",
                 from_email=settings.EMAIL_HOST_USER,
                 recipient_list=[email],
                 fail_silently=False,
             )
 
-            return Response({"message": "OTP sent successfully!"}, status=status.HTTP_200_OK)
+            return Response({"message": "Password reset link sent successfully!"}, status=status.HTTP_200_OK)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
