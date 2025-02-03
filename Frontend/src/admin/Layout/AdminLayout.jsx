@@ -6,7 +6,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import ArchiveIcon from "@mui/icons-material/Archive";
 import Sidebar from "./Sidebar/sidebar";
-import { Children, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function AdminLayout({ children }) {
   const [activeId, setActiveId] = useState(() => {
