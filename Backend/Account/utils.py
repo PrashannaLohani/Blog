@@ -16,8 +16,8 @@ class FeedbackView(APIView):
             send_mail(
                 subject='New Feedback Received',
                 message=f'Email: {email}\nFeedback: {feedback}',
-                from_email=email,  
-                recipient_list=config('EMAIL_HOST_USER'),  # Replace with your Gmail account
+                from_email=config('EMAIL_HOST_USER'),  
+                recipient_list=[config('EMAIL_HOST_USER')],  # Replace with your Gmail account
                 fail_silently=False,
             )
 
