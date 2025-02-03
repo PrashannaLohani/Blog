@@ -36,3 +36,6 @@ class UserSocialSerializer(serializers.ModelSerializer):
 class FeedbackSerializer(serializers.Serializer):
     email = serializers.EmailField()
     feedback = serializers.CharField()
+
+class EmailVerificationSerializer(serializers.Serializer):
+    email= serializers.EmailField()

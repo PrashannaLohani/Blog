@@ -17,9 +17,10 @@ class User(AbstractUser):
 class Login(models.Model):
     email = models.EmailField()
     password = models.CharField(max_length=100)
+    last_login = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return self.username
+        return self.email
     
 class Social(models.Model):
     id = models.UUIDField(
