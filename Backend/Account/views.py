@@ -9,6 +9,7 @@ from .models import *
 from django.utils import timezone
 from django.contrib.auth.hashers import make_password, check_password
 from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
 @api_view(['POST'])
@@ -132,3 +133,24 @@ class ChangePasswordView(APIView):
             return Response({"message": "Password successfully changed."}, status=status.HTTP_200_OK)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class UserDetailView(APIView):
+    """View to fetch user details"""
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user  # Get authenticated user
+
+        user_data = {
+            "id": user.id,
+            "username": user.username,
+            "email": user.email,
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            'number_of_blogs':user.numberofblogs,
+            "date_joined": user.date_joined.strftime("%Y-%m-%d %H:%M:%S"),
+            "last_login": user.last_login.strftime("%Y-%m-%d %H:%M:%S") if user.last_login else None,
+        }
+
+        return Response(user_data, status=status.HTTP_200_OK)
