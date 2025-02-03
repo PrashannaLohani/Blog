@@ -143,7 +143,6 @@ REST_FRAMEWORK = {
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
-    # 'https://your-react-app-domain.com',
 ]
 
 CORS_ALLOW_HEADERS = [
