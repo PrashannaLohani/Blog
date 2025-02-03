@@ -7,7 +7,8 @@ from django.utils.timezone import now
 from .serializers import *
 from .models import *
 from django.utils import timezone
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password, check_password
+from rest_framework.permissions import IsAuthenticated
 
 
 @api_view(['POST'])
@@ -107,4 +108,27 @@ class PasswordReset(APIView):
 
             return Response({"message": "Password successfully updated."}, status=status.HTTP_200_OK)
         
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class ChangePasswordView(APIView):
+    permission_classes = [IsAuthenticated]
+    def patch(self, request):
+        serializer = ChangePasswordSerializer(data=request.data)
+        if serializer.is_valid():
+            current_password = serializer.validated_data['current_password']
+            new_password = serializer.validated_data['new_password']
+
+            # Get the authenticated user
+            user = request.user
+
+            # Check if the current password matches
+            if not check_password(current_password, user.password):
+                return Response({"message": "Current password is incorrect."}, status=status.HTTP_400_BAD_REQUEST)
+
+            # Update the password with the new one
+            user.password = make_password(new_password)
+            user.save()
+
+            return Response({"message": "Password successfully changed."}, status=status.HTTP_200_OK)
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

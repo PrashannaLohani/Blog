@@ -42,3 +42,7 @@ class EmailVerificationSerializer(serializers.Serializer):
 
 class PasswordResetSerializer(serializers.Serializer):
     new_password = serializers.CharField(min_length=8)  # Ensure a minimum password length
+
+class ChangePasswordSerializer(serializers.Serializer):
+    current_password = serializers.CharField(min_length=8)
+    new_password = serializers.CharField(min_length=8) 
