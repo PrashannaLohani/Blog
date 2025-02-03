@@ -1,8 +1,9 @@
 from rest_framework.decorators import api_view
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
-from django.views.decorators.csrf import csrf_exempt
+from django.utils.timezone import now
 from .serializers import *
 from .models import *
 
@@ -28,37 +29,55 @@ def create_user(request):
 
     return Response({'error': 'Invalid request'}, status=status.HTTP_400_BAD_REQUEST)
 
+class AuthView(APIView):
+    def post(self, request):
+        """Handles user login and token generation"""
+        serializer = UserLoginSerializer(data=request.data)
+        if serializer.is_valid():
+            email = serializer.validated_data['email']
+            password = serializer.validated_data['password']
 
-@api_view(['POST'])
-def login_user(request):
-    serializer = UserLoginSerializer(data=request.data)
-    if serializer.is_valid():
-        email = serializer.validated_data['email']
-        password = serializer.validated_data['password']
-        
+            try:
+                user = User.objects.get(email=email)  # Fetch from Login model
+            except User.DoesNotExist:
+                return Response({"message": "User Doesn't Exist."}, status=status.HTTP_401_UNAUTHORIZED)
+
+            if user.password != password:  # Since passwords are not hashed
+                return Response({"message": "Wrong Password."}, status=status.HTTP_401_UNAUTHORIZED)
+
+            # Update last login time
+            user.last_login = now()
+            user.save(update_fields=['last_login'])
+
+            # Generate JWT token
+            refresh = RefreshToken.for_user(user)
+            access_token = str(refresh.access_token)
+
+            return Response({
+                "message": "Login successful.",
+                "access_token": access_token,
+                "refresh_token": str(refresh),
+                "user": {
+                    "email": user.email,
+                    "last_login": user.last_login.strftime("%Y-%m-%d %H:%M:%S")
+                }
+            }, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def delete(self, request):
+        """Handles user logout by blacklisting the token"""
         try:
-            user = User.objects.get(email=email)
-        except User.DoesNotExist:
-            return Response({"message": "User Doesn't Exist."}, status=status.HTTP_401_UNAUTHORIZED)
+            refresh_token = request.data.get("refresh_token")
+            if not refresh_token:
+                return Response({"message": "Refresh token is required."}, status=status.HTTP_400_BAD_REQUEST)
 
-        if not user.check_password(password):
-            return Response({"message": "Wrong Password."}, status=status.HTTP_401_UNAUTHORIZED)
+            token = RefreshToken(refresh_token)
+            token.blacklist()  # Blacklist the refresh token to prevent reuse
 
-        # Generate JWT token
-        refresh = RefreshToken.for_user(user)
-        access_token = str(refresh.access_token)
+            return Response({"message": "Logout successful."}, status=status.HTTP_200_OK)
 
-        # Return token and user data
-        return Response({
-            "message": "Login successful.",
-            "access_token": access_token,
-            "refresh_token": str(refresh),
-            "user": {
-                "id": user.id,
-                "username": user.username,
-                "email": user.email,
-                "numberofblogs": user.numberofblogs
-            }
-        }, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"message": "Invalid token or already logged out."}, status=status.HTTP_400_BAD_REQUEST)
+        
 
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
