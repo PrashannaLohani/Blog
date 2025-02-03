@@ -36,3 +36,13 @@ class UserSocialSerializer(serializers.ModelSerializer):
 class FeedbackSerializer(serializers.Serializer):
     email = serializers.EmailField()
     feedback = serializers.CharField()
+
+class EmailVerificationSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+
+class PasswordResetSerializer(serializers.Serializer):
+    new_password = serializers.CharField(min_length=8)  # Ensure a minimum password length
+
+class ChangePasswordSerializer(serializers.Serializer):
+    current_password = serializers.CharField(min_length=8)
+    new_password = serializers.CharField(min_length=8) 

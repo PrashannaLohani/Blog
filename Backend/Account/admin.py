@@ -12,7 +12,7 @@ class UserAdmin (admin.ModelAdmin):
 
 @admin.register(Login)
 class UserLogin (admin.ModelAdmin):
-    list_display = ('id','email', 'password')
+    list_display = ('id','email', 'password','last_login')
     search_fields = ('id', 'email')
     ordering = ['id']
 
