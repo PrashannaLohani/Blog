@@ -7,6 +7,7 @@ from django.utils.timezone import now
 from .serializers import *
 from .models import *
 
+
 @api_view(['POST'])
 def create_user(request):
     if request.method == 'POST':

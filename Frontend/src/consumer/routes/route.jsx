@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 import { useRoutes, Outlet } from "react-router-dom";
 import Loader from "../../Components/loader/Loader";
-import MainLayout from "../../Layout/MainLayout";
+import MainLayout from "../Layout/MainLayout";
 import Error from "../../Components/Error/Error";
 
 // Lazy loading other pages
