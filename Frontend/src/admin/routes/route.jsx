@@ -3,7 +3,8 @@ import { useRoutes, Outlet } from "react-router-dom";
 import Loader from "../../Components/loader/Loader";
 import AdminLayout from "../Layout/AdminLayout";
 
-const Login = lazy(() => import("../pages/Login"));
+const Login = lazy(() => import("../pages/Auth/Login"));
+const EmailVerify = lazy(() => import("../pages/Auth/EmailVerification"));
 const Profile = lazy(() => import("../pages/Profile"));
 const Dashboard = lazy(() => import("../pages/Dashboard"));
 const MyPost = lazy(() => import("../pages/MyPost"));
@@ -35,6 +36,11 @@ export default function AdminRoute() {
       path: "/",
       index: true,
       element: <Login />,
+    },
+    {
+      path: "/email-verification",
+      index: true,
+      element: <EmailVerify />,
     },
     {
       path: "*",

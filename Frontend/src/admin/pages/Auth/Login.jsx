@@ -1,13 +1,15 @@
 import { Box, Button, Typography } from "@mui/material";
-import Input from "../../Components/Inputs/input";
+import Input from "../../../Components/Inputs/input";
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [payload, setPayload] = useState({
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -62,6 +64,21 @@ export default function Login() {
                 value={payload.password}
                 onChange={handleChange}
               />
+              <Box display="flex" justifyContent="flex-end">
+                <Typography
+                  as="a"
+                  variant="subtitle2"
+                  onClick={() => navigate("/email-verification")} // Use onClick properly with the navigate function
+                  sx={{
+                    "&:hover": {
+                      textDecoration: "underline",
+                      cursor: "pointer",
+                    },
+                  }}
+                >
+                  Forget Password?
+                </Typography>
+              </Box>
               <Button type="submit" variant="contained" color="primary">
                 Login
               </Button>

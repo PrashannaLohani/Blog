@@ -5,8 +5,9 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 export default function CustomButton({
   children,
   onClick,
-  variant = "outlined",
-  endIcon = <ArrowForwardIcon />,
+  variant,
+  endIcon,
+  width,
   sx = {},
   ...rest
 }) {
@@ -17,7 +18,7 @@ export default function CustomButton({
       onClick={onClick}
       sx={{
         border: "1px solid black",
-        maxWidth: "15rem",
+        width: { width },
         p: "0.6rem",
         "&:hover": {
           color: "primary.text",

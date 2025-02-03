@@ -45,7 +45,8 @@ class AuthView(APIView):
             except User.DoesNotExist:
                 return Response({"message": "User Doesn't Exist."}, status=status.HTTP_401_UNAUTHORIZED)
 
-            if user.password != password:  # Since passwords are not hashed
+            # Check password using Django's check_password function (since password is hashed)
+            if not check_password(password, user.password):
                 return Response({"message": "Wrong Password."}, status=status.HTTP_401_UNAUTHORIZED)
 
             # Update last login time
