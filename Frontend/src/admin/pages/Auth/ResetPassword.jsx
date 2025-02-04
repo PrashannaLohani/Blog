@@ -36,9 +36,13 @@ export default function ResetPassword() {
     } else {
       setError("");
       try {
-        const res = await request("POST", `account/password-reset/${token}/`, {
-          data: { new_password: confirmPassword }, // Sending email as part of the data payload
-        });
+        const res = await request(
+          "PATCH/",
+          `account/password-reset/${token}/`,
+          {
+            data: { new_password: confirmPassword }, // Sending email as part of the data payload
+          }
+        );
         // Check if the response contains success message
         showSnackbar(res.message, "success"); // Show success message
         navigate("/");
