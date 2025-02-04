@@ -1,14 +1,21 @@
-import { Box, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import Input from "../../../Components/Inputs/input";
 import CustomButton from "../../../Components/Basic-Components/Button";
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAppSnackbar } from "../../../Components/Basic-Components/snackbar/snackbar";
+import useApi from "../../../Hook/useApi";
 
 export default function ResetPassword() {
+  const { token } = useParams();
+  const { showSnackbar } = useAppSnackbar();
+  const { request, loading } = useApi();
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(""); // to handle error messages
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const passwordRegex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/; // Regex for validation
@@ -28,10 +35,19 @@ export default function ResetPassword() {
       setError("Passwords do not match.");
     } else {
       setError("");
-      setNewPassword("");
-      setConfirmPassword("");
-      // Handle password reset logic (e.g., make API call)
-      console.log(newPassword);
+      try {
+        const res = await request("POST", `account/password-reset/${token}/`, {
+          data: { new_password: confirmPassword }, // Sending email as part of the data payload
+        });
+        // Check if the response contains success message
+        showSnackbar(res.message, "success"); // Show success message
+        navigate("/");
+      } catch (error) {
+        // Handling error case when email is not registered
+        const errorMessage =
+          error.response?.data?.message || "An error occurred.";
+        showSnackbar(errorMessage, "error"); // Show error message
+      }
     }
   };
 
@@ -81,8 +97,13 @@ export default function ResetPassword() {
                   {error}
                 </Typography>
               )}
-              <CustomButton variant="contained" endIcon="" type="submit">
-                Reset
+              <CustomButton
+                variant="contained"
+                endIcon=""
+                type="submit"
+                disabled={loading}
+              >
+                {loading ? <CircularProgress /> : "Reset"}
               </CustomButton>
             </Box>
           </form>

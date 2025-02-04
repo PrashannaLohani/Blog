@@ -1,9 +1,21 @@
-import { Box, Button, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Skeleton,
+  Typography,
+} from "@mui/material";
 import Input from "../../../Components/Inputs/input";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAppSnackbar } from "../../../Components/Basic-Components/snackbar/snackbar";
+import useApi from "../../../Hook/useApi";
+import { setCookie } from "../../../Utils/cookie";
 
 export default function Login() {
+  const { showSnackbar } = useAppSnackbar();
+  const { request, loading } = useApi();
+
   const [payload, setPayload] = useState({
     email: "",
     password: "",
@@ -19,10 +31,16 @@ export default function Login() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setPayload({ email: "", password: "" });
-    console.log("Form Submitted", payload);
+    try {
+      const res = await request("POST", "/account/login/", { data: payload });
+      setCookie("token", res.access_token);
+      showSnackbar("Login successful!", "success");
+      navigate("/dashboard");
+    } catch (error) {
+      showSnackbar(`Error: ${error}`, "error");
+    }
   };
 
   return (
@@ -53,6 +71,7 @@ export default function Login() {
                 name="email"
                 label="Email"
                 width="25rem"
+                required
                 value={payload.email}
                 onChange={handleChange}
               />
@@ -61,6 +80,7 @@ export default function Login() {
                 label="Password"
                 type="password"
                 width="25rem"
+                required
                 value={payload.password}
                 onChange={handleChange}
               />
@@ -79,8 +99,13 @@ export default function Login() {
                   Forget Password?
                 </Typography>
               </Box>
-              <Button type="submit" variant="contained" color="primary">
-                Login
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                disabled={loading}
+              >
+                {loading ? <CircularProgress /> : "Login"}
               </Button>
             </Box>
           </form>
