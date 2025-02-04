@@ -1,11 +1,14 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import Input from "../../../Components/Inputs/input";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSnackbar } from "../../../Components/Basic-Components/snackbar/snackbar";
+import useApi from "../../../Hook/useApi";
 
 export default function Login() {
   const { showSnackbar } = useAppSnackbar();
+  const { request, loading } = useApi();
+
   const [payload, setPayload] = useState({
     email: "",
     password: "",
@@ -21,10 +24,18 @@ export default function Login() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setPayload({ email: "", password: "" });
-    console.log("Form Submitted", payload);
+    try {
+      const res = await request("POST", "/account/login", { data: payload });
+      // showSnackbar("Login successful!", "success");
+      console.log("Response:", res);
+
+      navigate("/dashboard");
+    } catch (error) {
+      // showSnackbar(`Error: ${error}`, "error");
+      console.error("Login Error:", error);
+    }
   };
 
   return (
@@ -55,6 +66,7 @@ export default function Login() {
                 name="email"
                 label="Email"
                 width="25rem"
+                required
                 value={payload.email}
                 onChange={handleChange}
               />
@@ -63,6 +75,7 @@ export default function Login() {
                 label="Password"
                 type="password"
                 width="25rem"
+                required
                 value={payload.password}
                 onChange={handleChange}
               />
@@ -85,11 +98,9 @@ export default function Login() {
                 type="submit"
                 variant="contained"
                 color="primary"
-                onClick={() =>
-                  showSnackbar("This is a success message!", "info")
-                }
+                disabled={loading}
               >
-                Login
+                {loading ? <CircularProgress /> : "Login"}
               </Button>
             </Box>
           </form>

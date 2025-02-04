@@ -25,7 +25,7 @@ export default function AppSnackbarProvider({ children }) {
   return (
     <SnackbarProvider
       maxSnack={3}
-      autoHideDuration={3000}
+      autoHideDuration={4000}
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
       TransitionProps={{ direction: "left" }}
     >
