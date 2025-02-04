@@ -53,7 +53,7 @@ export default function EmailVerify() {
             Please enter your email for verification. A password reset link will
             be sent to your email address.
           </Typography>
-          {(emailSent && (
+          {(emailSent === false && (
             <form onSubmit={handleSubmit}>
               <Box display="flex" flexDirection="column" gap="1rem">
                 <Input

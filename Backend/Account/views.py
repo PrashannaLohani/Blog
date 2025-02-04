@@ -94,10 +94,6 @@ class PasswordReset(APIView):
         except User.DoesNotExist:
             return Response({"message": "Invalid or expired reset token."}, status=status.HTTP_400_BAD_REQUEST)
 
-        # Check if the token has expired
-        if user.password_reset_token_expiry < timezone.now():
-            return Response({"message": "This reset link has expired."}, status=status.HTTP_400_BAD_REQUEST)
-
         # Validate the new password
         serializer = PasswordResetSerializer(data=request.data)
         if serializer.is_valid():

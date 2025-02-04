@@ -38,7 +38,7 @@ class EmailVerification(APIView):
             # Check if email exists in the User model
             user = User.objects.filter(email=email).first()
             if not user:
-                return Response({"message": "Email not registered."}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({"message": "Email is not registered."}, status=status.HTTP_400_BAD_REQUEST)
 
           
             reset_token = user.id 
@@ -47,9 +47,9 @@ class EmailVerification(APIView):
             # Save the expiration time to the user model (without needing a separate method in the model)
             user.password_reset_token_expiry = reset_token_expiry
             user.save()
-
+            reset_url = config('FRONTEND_URL_ADMIN')
             # Create password reset link
-            reset_link = f"test/reset-password/{reset_token}/"
+            reset_link = f"{reset_url}reset-password/{reset_token}/"
 
             # Send the password reset link via email
             send_mail(

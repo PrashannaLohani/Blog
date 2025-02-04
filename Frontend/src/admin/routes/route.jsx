@@ -45,7 +45,7 @@ export default function AdminRoute() {
       element: <EmailVerify />,
     },
     {
-      path: "/reset-password",
+      path: "/reset-password/:token",
       index: true,
       element: <ResetPassword />,
     },
