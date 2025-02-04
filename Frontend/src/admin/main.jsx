@@ -6,6 +6,7 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import Loader from "../Components/loader/Loader.jsx";
 import { BrowserRouter } from "react-router-dom";
 import AdminApp from "./app.jsx";
+import AppSnackbarProvider from "../Components/Basic-Components/snackbar/snackbar.jsx";
 
 const theme = createTheme({
   palette: {
@@ -23,9 +24,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Suspense fallback={<Loader />}>
-          <AdminApp />
-        </Suspense>
+        <AppSnackbarProvider>
+          <Suspense fallback={<Loader />}>
+            <AdminApp />
+          </Suspense>
+        </AppSnackbarProvider>
       </BrowserRouter>
     </ThemeProvider>
   </StrictMode>

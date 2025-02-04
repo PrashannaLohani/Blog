@@ -2,8 +2,10 @@ import { Box, Button, Typography } from "@mui/material";
 import Input from "../../../Components/Inputs/input";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAppSnackbar } from "../../../Components/Basic-Components/snackbar/snackbar";
 
 export default function Login() {
+  const { showSnackbar } = useAppSnackbar();
   const [payload, setPayload] = useState({
     email: "",
     password: "",
@@ -79,7 +81,14 @@ export default function Login() {
                   Forget Password?
                 </Typography>
               </Box>
-              <Button type="submit" variant="contained" color="primary">
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                onClick={() =>
+                  showSnackbar("This is a success message!", "info")
+                }
+              >
                 Login
               </Button>
             </Box>
