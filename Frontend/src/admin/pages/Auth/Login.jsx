@@ -1,4 +1,10 @@
-import { Box, Button, Skeleton, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Skeleton,
+  Typography,
+} from "@mui/material";
 import Input from "../../../Components/Inputs/input";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -29,9 +35,7 @@ export default function Login() {
     e.preventDefault();
     try {
       const res = await request("POST", "/account/login/", { data: payload });
-      console.log(res);
       setCookie("token", res.access_token);
-
       showSnackbar("Login successful!", "success");
       navigate("/dashboard");
     } catch (error) {
@@ -101,7 +105,7 @@ export default function Login() {
                 color="primary"
                 disabled={loading}
               >
-                {loading ? <Skeleton /> : "Login"}
+                {loading ? <CircularProgress /> : "Login"}
               </Button>
             </Box>
           </form>
