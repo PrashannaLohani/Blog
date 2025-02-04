@@ -10,4 +10,5 @@ urlpatterns = [
     path('email-verification/', EmailVerification.as_view(), name="email_verification"),
     path('password-reset/', PasswordReset.as_view(), name="password_reset"),
     path('change-password/', ChangePasswordView.as_view(), name='change_password'),
+    path('user-details/', UserDetailView.as_view(), name='user-detail'),
 ]

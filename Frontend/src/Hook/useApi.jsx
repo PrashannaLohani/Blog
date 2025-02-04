@@ -1,16 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
-import { useAppSnackbar } from "../Components/Basic-Components/snackbar/snackbar";
 
-// const baseURL = import.meta.env.VITE_BACKEND_API_URL;
 const baseURL = "http://127.0.0.1:8000";
-console.log("Backend URL:", baseURL);
 
 const useApi = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
-  const { showSnackbar } = useAppSnackbar();
 
   const request = async (
     method,
@@ -39,11 +35,11 @@ const useApi = () => {
         withCredentials: true,
       });
       setData(response.data);
-      showSnackbar(response.data.message, "success");
       return response.data;
     } catch (err) {
-      showSnackbar(`${err}`, "error");
-      setError(err);
+      const errorMessage =
+        err.response?.data?.message || err.message || "An error occurred.";
+      setError(errorMessage); // Set the error state
       throw err;
     } finally {
       setLoading(false);

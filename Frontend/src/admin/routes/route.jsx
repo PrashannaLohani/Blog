@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { useRoutes, Outlet } from "react-router-dom";
 import Loader from "../../Components/loader/Loader";
 import AdminLayout from "../Layout/AdminLayout";
+import ProtectedRoute from "../Layout/ProtectedLayout";
 
 const Login = lazy(() => import("../pages/Auth/Login"));
 const EmailVerify = lazy(() => import("../pages/Auth/EmailVerification"));
@@ -18,11 +19,11 @@ export default function AdminRoute() {
     {
       element: (
         <Suspense fallback={<Loader />}>
-          {/* <ProtectedRoute> */}
-          <AdminLayout>
-            <Outlet />
-          </AdminLayout>
-          {/* </ProtectedRoute> */}
+          <ProtectedRoute>
+            <AdminLayout>
+              <Outlet />
+            </AdminLayout>
+          </ProtectedRoute>
         </Suspense>
       ),
       children: [

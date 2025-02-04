@@ -1,9 +1,10 @@
-import { Box, Button, CircularProgress, Typography } from "@mui/material";
+import { Box, Button, Skeleton, Typography } from "@mui/material";
 import Input from "../../../Components/Inputs/input";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSnackbar } from "../../../Components/Basic-Components/snackbar/snackbar";
 import useApi from "../../../Hook/useApi";
+import { setCookie } from "../../../Utils/cookie";
 
 export default function Login() {
   const { showSnackbar } = useAppSnackbar();
@@ -27,14 +28,14 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await request("POST", "/account/login", { data: payload });
-      // showSnackbar("Login successful!", "success");
-      console.log("Response:", res);
+      const res = await request("POST", "/account/login/", { data: payload });
+      console.log(res);
+      setCookie("token", res.access_token);
 
+      showSnackbar("Login successful!", "success");
       navigate("/dashboard");
     } catch (error) {
-      // showSnackbar(`Error: ${error}`, "error");
-      console.error("Login Error:", error);
+      showSnackbar(`Error: ${error}`, "error");
     }
   };
 
@@ -100,7 +101,7 @@ export default function Login() {
                 color="primary"
                 disabled={loading}
               >
-                {loading ? <CircularProgress /> : "Login"}
+                {loading ? <Skeleton /> : "Login"}
               </Button>
             </Box>
           </form>
