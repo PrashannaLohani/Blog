@@ -87,7 +87,7 @@ class AuthView(APIView):
         
 
 class PasswordReset(APIView):
-    def post(self, request, reset_token):
+    def patch(self, request, reset_token):
         # Check if the reset token exists in the database
         try:
             user = User.objects.get(id=reset_token)

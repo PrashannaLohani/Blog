@@ -11,14 +11,14 @@ const ProtectedRoute = ({ children }) => {
   useEffect(() => {
     const token = getCookie("token");
     if (!token) {
-      navigate("/"); // Redirect to home if no token
+      navigate("/");
     } else {
       setIsAuthenticated(true); // Set authenticated to true if token exists
     }
   }, [navigate]); // Add navigate to dependency array
 
   if (!isAuthenticated) {
-    return <Loader />; // Return null or a loading spinner while checking authentication
+    return <Loader />;
   }
 
   return children;
